@@ -1,0 +1,6 @@
+env/
+chromedriver/
+*.txt
+*.json
+siteAdr.py
+__pycache__/
