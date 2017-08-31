@@ -7,3 +7,12 @@ __pycache__/
 phantomjs.exe
 
 BGRating/config.py
+websaver/config.py
+
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+media
