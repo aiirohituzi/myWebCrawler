@@ -15,5 +15,6 @@ def getRating(request):
             'SQUAD': r.squad,
         })
     data = json.dumps(data, indent=4)
-    print(data)
+    print("Get - rating data")
+    # print(data)
     return HttpResponse(data, content_type = "application/json")

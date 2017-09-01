@@ -4,31 +4,46 @@
   </head>
   <body>
     <script src="bundle.js"></script>
-    <script src="https://unpkg.com/vue"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <div id="app">
-      {{ message }}
-    </div>
-    <div id="app-2">
-      <span v-bind:title="message">
-        내 위에 잠시 마우스를 올리면 동적으로 바인딩 된 title을 볼 수 있습니다!
-      </span>
+      <div class="container">
+        <ul class="list-group">
+          <rating v-for="rating in ratings" :rating="rating">
+          </rating>
+        </ul>
+      </div>
     </div>
 
-    <script>
-      var app = new Vue({
-        el: '#app',
-        data: {
-          message: '안녕하세요 Vue!'
-        }
-      })
-      var app2 = new Vue({
-        el: '#app-2',
-        data: {
-          message: '이 페이지는 ' + new Date() + ' 에 로드 되었습니다'
-        }
-      })
-    </script>
+    <template id="template-rating-row">
+      <li class="list_group_item">
+        {{ rating.USER }} : {{ rating.SOLO }} / {{ rating.DUO }} / {{ rating.SQUAD }}
+      </li>
+    </template>
   </body>
+  
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript">
+    Vue.component('rating', {
+      template: "#template-rating-row",
+      props: ['rating'],
+    });
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        ratings: []
+      },
+      mounted: function (){
+        axios.get("http://localhost:8000/rating/")
+        .then(function (response){
+          Vue.set(vm, 'ratings', response.data)
+        })
+      }
+    })
+  </script>
 </html>
