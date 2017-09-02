@@ -7,31 +7,37 @@
 
     <div id="app">
       <div class="container">
-        <ul class="list-group">
-          <rating v-for="rating in ratings" :rating="rating">
-          </rating>
-        </ul>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>USER</th>
+              <th>SOLO</th>
+              <th>DUO</th>
+              <th>SQUAD</th>
+              <th>Update time</th>
+            </tr>
+          <thead>
+          <tbody>
+            <tr v-for="rating in ratings" :rating="rating">
+              <td>{{ rating.USER }}</td>
+              <td>{{ rating.SOLO }}</td>
+              <td>{{ rating.DUO }}</td>
+              <td>{{ rating.SQUAD }}</td>
+              <td>{{ rating.Update_time }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-
-    <template id="template-rating-row">
-      <li class="list_group_item">
-        {{ rating.USER }} : {{ rating.SOLO }} / {{ rating.DUO }} / {{ rating.SQUAD }}
-      </li>
-    </template>
   </body>
   
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   <script src="https://unpkg.com/vue"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script type="text/javascript">
-    Vue.component('rating', {
-      template: "#template-rating-row",
-      props: ['rating'],
-    });
 
     var vm = new Vue({
       el: '#app',
