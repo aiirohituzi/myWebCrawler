@@ -16,8 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from parsed_data.views import getRating
+from parsed_data.views import getRecentRating
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^rating/$', getRating, name='getRating'),
+    url(r'^recentRating/$', getRecentRating, name='getRecentRating'),
 ]

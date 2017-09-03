@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'parsed_data',
     'corsheaders',
+    'background_task',
 ]
 
 MIDDLEWARE = [
