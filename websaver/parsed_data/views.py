@@ -8,7 +8,7 @@ import config
 # Create your views here.
 def getRating(request):
     data = []
-    for r in RatingData.objects.all():
+    for r in RatingData.objects.all().order_by('-created_at'):
         data.append({
             'id': r.id,
             'USER': r.userName,
@@ -19,7 +19,7 @@ def getRating(request):
         })
     data = json.dumps(data, indent=4)
     print("Get - rating data")
-    # print(data)
+    print(data)
     return HttpResponse(data, content_type = "application/json")
 
 def getRecentRating(request):
@@ -34,7 +34,7 @@ def getRecentRating(request):
             'SQUAD': r[0].squad,
             'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
         })
-        print(data)
     data = json.dumps(data, indent=4)
     print("Get - recent rating data")
+    print(data)
     return HttpResponse(data, content_type = "application/json")

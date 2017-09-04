@@ -5,8 +5,33 @@
   <body>
     <script src="bundle.js"></script>
 
-    <div id="app">
+    <div id="recentRating">
       <div class="container">
+        <h1>최근 레이팅</h1>
+        <table class="table table-hover">
+        <thead>
+            <tr>
+              <th>USER</th>
+              <th>SOLO</th>
+              <th>DUO</th>
+              <th>SQUAD</th>
+            </tr>
+          <thead>
+          <tbody>
+            <tr v-for="rating in r_ratings" :rating="rating">
+              <td>{{ rating.USER }}</td>
+              <td>{{ rating.SOLO }}</td>
+              <td>{{ rating.DUO }}</td>
+              <td>{{ rating.SQUAD }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="allRating">
+      <div class="container">
+        <h1>전체 레이팅 기록</h1>
         <table class="table table-hover">
           <thead>
             <tr>
@@ -37,10 +62,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   <script src="https://unpkg.com/vue"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script type="text/javascript">
 
+  <script type="text/javascript">
     var vm = new Vue({
-      el: '#app',
+      el: '#allRating',
       data: {
         ratings: []
       },
@@ -48,6 +73,19 @@
         axios.get("http://localhost:8000/rating/")
         .then(function (response){
           Vue.set(vm, 'ratings', response.data)
+        })
+      }
+    })
+
+    var vm2 = new Vue({
+      el: '#recentRating',
+      data: {
+        r_ratings: []
+      },
+      mounted: function (){
+        axios.get("http://localhost:8000/recentRating/")
+        .then(function (response){
+          Vue.set(vm2, 'r_ratings', response.data)
         })
       }
     })
