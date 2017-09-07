@@ -38,3 +38,25 @@ def getRecentRating(request):
     print("Get - recent rating data")
     print(data)
     return HttpResponse(data, content_type = "application/json")
+
+def getUserRating(request):
+    data = []
+    userName = request.GET.get('userName', False)
+
+    if userName:
+        obj = RatingData.objects.filter(userName=userName).order_by('-created_at')
+        for r in obj:
+            data.append({
+                'id': r.id,
+                'USER': r.userName,
+                'SOLO': r.solo,
+                'DUO': r.duo,
+                'SQUAD': r.squad,
+                'Update_time': datetime.datetime.strftime(r.created_at, "%Y-%m-%d %H:%M:%S"),
+            })
+        data = json.dumps(data, indent=4)
+        print("Get - '" + userName + "' rating data")
+        print(data)
+    else:
+        print("error - User not found")
+    return HttpResponse(data, content_type = "application/json")

@@ -80,6 +80,7 @@ class Paser:
         rating_data = self.parse_rating()
         for arr in rating_data:
             for user, rating in arr.items():
+                print(user)
                 print(rating.get('solo'))
                 print(rating.get('duo'))
                 print(rating.get('squad'))
