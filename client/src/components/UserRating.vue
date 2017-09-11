@@ -1,11 +1,10 @@
 <template>
-<div id="AllRating">
+<div id="RecentRating">
     <div class="container">
-        <h1>전체 레이팅 기록</h1>
+        <h1>{{ userName }} 의 전체 레이팅</h1>
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>USER</th>
                     <th>SOLO</th>
                     <th>DUO</th>
                     <th>SQUAD</th>
@@ -13,8 +12,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="rating in ratings" :rating="rating" @click="userRating(rating.USER)">
-                    <td>{{ rating.USER }}</td>
+                <tr v-for="rating in u_ratings" :rating="rating">
                     <td>{{ rating.SOLO }}</td>
                     <td>{{ rating.DUO }}</td>
                     <td>{{ rating.SQUAD }}</td>
@@ -30,20 +28,17 @@
 import axios from 'axios'
 
 export default {
-    name: 'AllRating',
+    name: 'UserRating',
     data () {
         return {
-            ratings: []
+            userName: this.$route.params.userName,
+            u_ratings: []
         }
     },
     methods: {
-        userRating (userName) {
-            this.$router.push({name:'UserRating', params:{userName:userName}})
-            console.log('ata')
-        },
         fetchRatings: function () {
-            axios.get('http://localhost:8000/rating/').then((response) => {
-                this.ratings = response.data
+            axios.get('http://localhost:8000/userRating/?userName=' + this.$route.params.userName).then((response) => {
+                this.u_ratings = response.data
             }, (error) => {
                 console.log(error)
             })
@@ -56,4 +51,5 @@ export default {
 </script>
 
 <style>
+
 </style>

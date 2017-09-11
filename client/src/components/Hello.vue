@@ -21,7 +21,6 @@
 </template>
 
 <script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 export default {
   name: 'hello',
   data () {

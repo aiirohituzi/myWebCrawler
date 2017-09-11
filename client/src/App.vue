@@ -1,10 +1,13 @@
 <template>
   <div id="app">
     <!--<img src="./assets/logo.png">-->
-    <ul>
-        <li><router-link to="/">All Rating</router-link></li>
-        <li><router-link to="/RecentRating">Recent Rating</router-link></li>
-    </ul>
+    <div class="container">
+      <ul class="nav nav-pills">
+          <li><router-link to="/">Home</router-link></li>
+          <li><router-link to="/AllRating">All Rating</router-link></li>
+          <li><router-link to="/RecentRating">Recent Rating</router-link></li>
+      </ul>
+    </div>
     <router-view></router-view>
   </div>
 </template>
