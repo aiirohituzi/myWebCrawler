@@ -39,7 +39,6 @@ export default {
     methods: {
         userRating (userName) {
             this.$router.push({name:'UserRating', params:{userName:userName}})
-            console.log('ata')
         },
         fetchRatings: function () {
             axios.get('http://localhost:8000/rating/').then((response) => {

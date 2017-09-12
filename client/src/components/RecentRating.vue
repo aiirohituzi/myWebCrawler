@@ -12,7 +12,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="rating in r_ratings" :rating="rating">
+                <tr v-for="rating in r_ratings" :rating="rating" @click="userRating(rating.USER)">
                     <td>{{ rating.USER }}</td>
                     <td>{{ rating.SOLO }}</td>
                     <td>{{ rating.DUO }}</td>
@@ -35,6 +35,9 @@ export default {
         }
     },
     methods: {
+        userRating (userName) {
+            this.$router.push({name:'UserRating', params:{userName:userName}})
+        },
         fetchRatings: function () {
             axios.get('http://localhost:8000/recentRating/').then((response) => {
                 this.r_ratings = response.data
