@@ -4,6 +4,7 @@ import Hello from '@/components/Hello'
 import AllRating from '@/components/AllRating'
 import RecentRating from '@/components/RecentRating'
 import UserRating from '@/components/UserRating'
+import Ranking from '@/components/Ranking'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ export default new Router({
       name: 'UserRating',
       component: UserRating,
       props: true
-    }
+    },
+    {
+      path: '/Ranking',
+      name: 'Ranking',
+      component: Ranking
+    },
   ]
 })

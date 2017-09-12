@@ -4,6 +4,7 @@ from parsed_data.models import RatingData
 import json
 import datetime
 import config
+import operator
 
 # Create your views here.
 def getRating(request):
@@ -60,3 +61,36 @@ def getUserRating(request):
     else:
         print("error - User not found")
     return HttpResponse(data, content_type = "application/json")
+
+def getSoloRanking(request):
+    data = []
+    for user in config.USER_LIST:
+        r = RatingData.objects.filter(userName=user).order_by('-created_at')
+        solo = r[0].solo
+        duo = r[0].duo
+        squad = r[0].squad
+        if r[0].solo != None:
+            solo = int(solo.replace(',', ''))
+        else:
+            solo = 0
+        if r[0].duo != None:
+            duo = int(duo.replace(',', ''))
+        else:
+            duo = 0
+        if r[0].squad != None:
+            squad = int(squad.replace(',', ''))
+        else:
+            squad = 0
+        data.append({
+            'id': r[0].id,
+            'USER': r[0].userName,
+            'SOLO': solo,
+            'DUO': duo,
+            'SQUAD': squad,
+            'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
+        })
+    sorted_data = sorted(data, key=operator.itemgetter('SOLO'), reverse=True)
+    sorted_data = json.dumps(sorted_data, indent=4)
+    print("Get - recent rating data")
+    print(sorted_data)
+    return HttpResponse(sorted_data, content_type = "application/json")

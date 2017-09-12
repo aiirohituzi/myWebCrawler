@@ -18,10 +18,12 @@ from django.contrib import admin
 from parsed_data.views import getRating
 from parsed_data.views import getRecentRating
 from parsed_data.views import getUserRating
+from parsed_data.views import getSoloRanking
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^rating/$', getRating, name='getRating'),
     url(r'^recentRating/$', getRecentRating, name='getRecentRating'),
     url(r'^userRating/$', getUserRating, name='getUserRating'),
+    url(r'^soloRanking/$', getSoloRanking, name='getSoloRanking'),
 ]

@@ -6,6 +6,7 @@
           <li><router-link to="/">Home</router-link></li>
           <li><router-link to="/AllRating">All Rating</router-link></li>
           <li><router-link to="/RecentRating">Recent Rating</router-link></li>
+          <li><router-link to="/Ranking">Ranking</router-link></li>
       </ul>
     </div>
     <router-view></router-view>
