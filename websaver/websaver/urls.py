@@ -19,6 +19,7 @@ from parsed_data.views import getRating
 from parsed_data.views import getRecentRating
 from parsed_data.views import getUserRating
 from parsed_data.views import getSoloRanking
+from parsed_data.views import getDuoRanking
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -26,4 +27,5 @@ urlpatterns = [
     url(r'^recentRating/$', getRecentRating, name='getRecentRating'),
     url(r'^userRating/$', getUserRating, name='getUserRating'),
     url(r'^soloRanking/$', getSoloRanking, name='getSoloRanking'),
+    url(r'^duoRanking/$', getDuoRanking, name='getDuoRanking'),
 ]

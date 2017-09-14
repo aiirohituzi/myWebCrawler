@@ -1,29 +1,51 @@
 <template>
-<div>
+<div class="container">
 <h1>각 분야 랭킹</h1>
-<div id="SoloRanking">
-    <div class="container">
-        <h3>SOLO RANKING</h3>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>USER</th>
-                    <th>SOLO</th>
-                    <th>DUO</th>
-                    <th>SQUAD</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="rating in ratings" :rating="rating" @click="userRating(rating.USER)">
-                    <td>{{ rating.USER }}</td>
-                    <td>{{ rating.SOLO }}</td>
-                    <td>{{ rating.DUO }}</td>
-                    <td>{{ rating.SQUAD }}</td>
-                </tr>
-            </tbody>
-        </table>
+    <hr>
+    <div id="Ranking" class="row">
+        <div class="col-md-6">
+            <h3>SOLO RANKING</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>USER</th>
+                        <th>SOLO</th>
+                        <th>DUO</th>
+                        <th>SQUAD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="rating in s_ratings" :rating="rating" @click="userRating(rating.USER)">
+                        <td>{{ rating.USER }}</td>
+                        <td>{{ rating.SOLO }}</td>
+                        <td>{{ rating.DUO }}</td>
+                        <td>{{ rating.SQUAD }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <h3>DUO RANKING</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>USER</th>
+                        <th>SOLO</th>
+                        <th>DUO</th>
+                        <th>SQUAD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="rating in d_ratings" :rating="rating" @click="userRating(rating.USER)">
+                        <td>{{ rating.USER }}</td>
+                        <td>{{ rating.SOLO }}</td>
+                        <td>{{ rating.DUO }}</td>
+                        <td>{{ rating.SQUAD }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 </div>
 </template>
 
@@ -31,10 +53,11 @@
 import axios from 'axios'
 
 export default {
-    name: 'SoloRanking',
+    name: 'Ranking',
     data () {
         return {
-            ratings: []
+            s_ratings: [],
+            d_ratings: []
         }
     },
     methods: {
@@ -43,7 +66,14 @@ export default {
         },
         fetchRatings: function () {
             axios.get('http://localhost:8000/soloRanking/').then((response) => {
-                this.ratings = response.data
+                this.s_ratings = response.data
+                console.log(response)
+            }, (error) => {
+                console.log(error)
+            })
+            
+            axios.get('http://localhost:8000/duoRanking/').then((response) => {
+                this.d_ratings = response.data
                 console.log(response)
             }, (error) => {
                 console.log(error)
