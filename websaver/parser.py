@@ -85,7 +85,7 @@ class Paser:
                 print(rating.get('duo'))
                 print(rating.get('squad'))
                 RatingData(userName=user, solo=rating.get('solo'), duo=rating.get('duo'), squad=rating.get('squad')).save()
-        threading.Timer(CRAWLER_TIME, self.dbSave).start()
+        # threading.Timer(CRAWLER_TIME, self.dbSave).start()
 
 if __name__=='__main__':
     p = Paser()

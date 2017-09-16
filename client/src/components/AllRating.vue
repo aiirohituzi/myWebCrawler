@@ -13,12 +13,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="n in max" @click="userRating(ratings[n].USER)">
-                    <td>{{ ratings[n].USER }}</td>
-                    <td>{{ ratings[n].SOLO }}</td>
-                    <td>{{ ratings[n].DUO }}</td>
-                    <td>{{ ratings[n].SQUAD }}</td>
-                    <td>{{ ratings[n].Update_time }}</td>
+                <tr v-for="n in max" @click="userRating(ratings[n-1].USER)">
+                    <td>{{ ratings[n-1].USER }}</td>
+                    <td>{{ ratings[n-1].SOLO }}</td>
+                    <td>{{ ratings[n-1].DUO }}</td>
+                    <td>{{ ratings[n-1].SQUAD }}</td>
+                    <td>{{ ratings[n-1].Update_time }}</td>
                 </tr>
             </tbody>
         </table>

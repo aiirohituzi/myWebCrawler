@@ -8,6 +8,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>USER</th>
                         <th>SOLO</th>
                         <th>DUO</th>
@@ -15,7 +16,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="rating in s_ratings" :rating="rating" @click="userRating(rating.USER)">
+                    <tr v-for="(rating, index) in s_ratings" :rating="rating" @click="userRating(rating.USER)">
+                        <td>{{ index+1 }}</td>
                         <td>{{ rating.USER }}</td>
                         <td><b>{{ rating.SOLO }}</b></td>
                         <td>{{ rating.DUO }}</td>
@@ -29,6 +31,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>USER</th>
                         <th>SOLO</th>
                         <th>DUO</th>
@@ -36,7 +39,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="rating in d_ratings" :rating="rating" @click="userRating(rating.USER)">
+                    <tr v-for="(rating, index) in d_ratings" :rating="rating" @click="userRating(rating.USER)">
+                        <td>{{ index+1 }}</td>
                         <td>{{ rating.USER }}</td>
                         <td>{{ rating.SOLO }}</td>
                         <td><b>{{ rating.DUO }}</b></td>
@@ -50,6 +54,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>USER</th>
                         <th>SOLO</th>
                         <th>DUO</th>
@@ -57,7 +62,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="rating in q_ratings" :rating="rating" @click="userRating(rating.USER)">
+                    <tr v-for="(rating, index) in q_ratings" :rating="rating" @click="userRating(rating.USER)">
+                        <td>{{ index+1 }}</td>
                         <td>{{ rating.USER }}</td>
                         <td>{{ rating.SOLO }}</td>
                         <td>{{ rating.DUO }}</td>
