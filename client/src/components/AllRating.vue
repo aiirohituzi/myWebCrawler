@@ -13,15 +13,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="rating in ratings" :rating="rating" @click="userRating(rating.USER)">
-                    <td>{{ rating.USER }}</td>
-                    <td>{{ rating.SOLO }}</td>
-                    <td>{{ rating.DUO }}</td>
-                    <td>{{ rating.SQUAD }}</td>
-                    <td>{{ rating.Update_time }}</td>
+                <tr v-for="n in max" @click="userRating(ratings[n].USER)">
+                    <td>{{ ratings[n].USER }}</td>
+                    <td>{{ ratings[n].SOLO }}</td>
+                    <td>{{ ratings[n].DUO }}</td>
+                    <td>{{ ratings[n].SQUAD }}</td>
+                    <td>{{ ratings[n].Update_time }}</td>
                 </tr>
             </tbody>
         </table>
+        <button class="btn btn-primary btn-block" @click="max+=10">More</button>
     </div>
 </div>
 </template>
@@ -33,7 +34,8 @@ export default {
     name: 'AllRating',
     data () {
         return {
-            ratings: []
+            ratings: [],
+            max: 10
         }
     },
     methods: {
