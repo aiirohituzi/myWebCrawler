@@ -5,6 +5,7 @@ import AllRating from '@/components/AllRating'
 import RecentRating from '@/components/RecentRating'
 import UserRating from '@/components/UserRating'
 import Ranking from '@/components/Ranking'
+import chartTest from '@/components/chart-test'
 
 Vue.use(Router)
 
@@ -13,7 +14,7 @@ export default new Router({
     {
       path: '/',
       name: 'hello',
-      component: Hello
+      component: chartTest
     },
     {
       path: '/AllRating',
