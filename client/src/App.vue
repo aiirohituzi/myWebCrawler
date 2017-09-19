@@ -7,6 +7,7 @@
           <li><router-link to="/AllRating">All Rating</router-link></li>
           <li><router-link to="/RecentRating">Recent Rating</router-link></li>
           <li><router-link to="/Ranking">Ranking</router-link></li>
+          <li><router-link to="/ChartTest">Chart</router-link></li>
       </ul>
     </div>
     <router-view></router-view>

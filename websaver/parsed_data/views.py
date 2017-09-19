@@ -162,3 +162,41 @@ def getSquadRanking(request):
     print("Get - squad ranking data")
     # print(sorted_data)
     return HttpResponse(sorted_data, content_type = "application/json")
+
+
+def getUserRatingChart(request):
+    data = []
+    userName = request.GET.get('userName', False)
+
+    if userName:
+        obj = RatingData.objects.filter(userName=userName).order_by('created_at')
+        for r in obj:
+            solo = r.solo
+            duo = r.duo
+            squad = r.squad
+            if r.solo != None:
+                solo = int(solo.replace(',', ''))
+            else:
+                solo = 0
+            if r.duo != None:
+                duo = int(duo.replace(',', ''))
+            else:
+                duo = 0
+            if r.squad != None:
+                squad = int(squad.replace(',', ''))
+            else:
+                squad = 0
+            data.append({
+                'id': r.id,
+                'USER': r.userName,
+                'SOLO': solo,
+                'DUO': duo,
+                'SQUAD': squad,
+                'Update_time': datetime.datetime.strftime(r.created_at, "%Y-%m-%d %H:%M:%S"),
+            })
+        data = json.dumps(data, indent=4)
+        print("Get - '" + userName + "' rating chart data")
+        print(data)
+    else:
+        print("error - User not found")
+    return HttpResponse(data, content_type = "application/json")
