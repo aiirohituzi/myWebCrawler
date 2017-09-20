@@ -5,7 +5,7 @@ import AllRating from '@/components/AllRating'
 import RecentRating from '@/components/RecentRating'
 import UserRating from '@/components/UserRating'
 import Ranking from '@/components/Ranking'
-import ChartTest from '@/components/chart-test'
+import RatingChart from '@/components/RatingChart'
 
 Vue.use(VueRouter)
 
@@ -31,7 +31,7 @@ export default new VueRouter({
       name: 'UserRating',
       components: {
         default: UserRating,
-        option: ChartTest
+        option: RatingChart
       },
       props: true
     },
@@ -39,12 +39,6 @@ export default new VueRouter({
       path: '/Ranking',
       name: 'Ranking',
       component: Ranking
-    },
-    {
-      path: '/ChartTest/:userName',
-      name: 'ChartTest',
-      component: ChartTest,
-      props: true
     },
   ]
 })
