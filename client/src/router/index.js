@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 import Hello from '@/components/Hello'
 import AllRating from '@/components/AllRating'
 import RecentRating from '@/components/RecentRating'
@@ -7,9 +7,9 @@ import UserRating from '@/components/UserRating'
 import Ranking from '@/components/Ranking'
 import ChartTest from '@/components/chart-test'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
+export default new VueRouter({
   routes: [
     {
       path: '/',
@@ -29,7 +29,10 @@ export default new Router({
     {
       path: '/UserRating/:userName',
       name: 'UserRating',
-      component: UserRating,
+      components: {
+        default: UserRating,
+        option: ChartTest
+      },
       props: true
     },
     {
