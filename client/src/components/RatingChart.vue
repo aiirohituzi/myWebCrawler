@@ -42,8 +42,11 @@ export default Line.extend({
       })
     }
   },
-  mounted () {
+  created () {
     this.fetchRatings()
+  },
+  mounted () {
+    // this.fetchRatings()
     this.renderChart(this.datacollection, {responsive: true, maintainAspectRatio: false})
   }
 })
