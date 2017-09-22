@@ -200,3 +200,12 @@ def getUserRatingChart(request):
     else:
         print("error - User not found")
     return HttpResponse(data, content_type = "application/json")
+
+def getUserList(request):
+    data = []
+    for user in config.USER_LIST:
+        data.append(user)
+    data = json.dumps(data, indent=4)
+    print("Get - User list")
+    print(data)
+    return HttpResponse(data, content_type = "application/json")

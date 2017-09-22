@@ -95,21 +95,21 @@ export default {
         fetchRatings: function () {
             axios.get('http://localhost:8000/soloRanking/').then((response) => {
                 this.s_ratings = response.data
-                console.log(response)
+                // console.log(response)
             }, (error) => {
                 console.log(error)
             })
             
             axios.get('http://localhost:8000/duoRanking/').then((response) => {
                 this.d_ratings = response.data
-                console.log(response)
+                // console.log(response)
             }, (error) => {
                 console.log(error)
             })
 
             axios.get('http://localhost:8000/squadRanking/').then((response) => {
                 this.q_ratings = response.data
-                console.log(response)
+                // console.log(response)
             }, (error) => {
                 console.log(error)
             })
