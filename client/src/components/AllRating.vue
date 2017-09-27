@@ -22,7 +22,12 @@
                 </tr>
             </tbody>
         </table>
-        <button class="btn btn-primary btn-block" @click="max+=10">More</button>
+        <button v-if="more" class="btn btn-primary btn-block" @click="moreData()">More</button>
+        <button v-else class="btn btn-default btn-block" disabled="disabled">No more data...</button>
+
+        <!--<pre>
+            {{ratings[max-1]}}
+        </pre>-->
     </div>
 </div>
 </template>
@@ -35,7 +40,9 @@ export default {
     data () {
         return {
             ratings: [],
-            max: 10
+            length: null,
+            max: 10,
+            more: true,
         }
     },
     methods: {
@@ -45,9 +52,24 @@ export default {
         fetchRatings: function () {
             axios.get('http://localhost:8000/rating/').then((response) => {
                 this.ratings = response.data
+                this.length = response.data.length
             }, (error) => {
                 console.log(error)
             })
+        },
+        moreData () {
+            if(this.max+10 <= this.length) {
+                this.max+=10
+            } else {
+                this.max = this.length
+            }
+
+            if(this.ratings[this.max] == undefined) {
+                this.more = false
+            }
+
+            // console.log(this.max)
+            // console.log(this.more)
         }
     },
     mounted: function () {
