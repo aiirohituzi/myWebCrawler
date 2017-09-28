@@ -3,6 +3,7 @@ import threading
 import requests
 from bs4 import BeautifulSoup
 import json
+import random
 
 import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "websaver.settings")
@@ -13,11 +14,13 @@ from parsed_data.models import RatingData
 
 import config
 
-CRAWLER_TIME = 3600
+CRAWLER_TIME = 600
 
 class Paser:
-    def __init__(self):
-        pass
+    SAVE_COUNT = 0
+
+    def __init__(self, count):
+        self.SAVE_COUNT = count
 
     def parse_rating(self):
         data = []
@@ -78,15 +81,18 @@ class Paser:
 
     def dbSave(self):
         rating_data = self.parse_rating()
-        for arr in rating_data:
-            for user, rating in arr.items():
-                print(user)
-                print(rating.get('solo'))
-                print(rating.get('duo'))
-                print(rating.get('squad'))
-                RatingData(userName=user, solo=rating.get('solo'), duo=rating.get('duo'), squad=rating.get('squad')).save()
-        # threading.Timer(CRAWLER_TIME, self.dbSave).start()
+        if self.SAVE_COUNT > 5:
+            for arr in rating_data:
+                for user, rating in arr.items():
+                    print(user)
+                    print(rating.get('solo'))
+                    print(rating.get('duo'))
+                    print(rating.get('squad'))
+                    RatingData(userName=user, solo=rating.get('solo'), duo=rating.get('duo'), squad=rating.get('squad')).save()
+            self.SAVE_COUNT = 0
+        self.SAVE_COUNT += 1
+        threading.Timer(CRAWLER_TIME + random.randrange(1,5), self.dbSave).start()
 
 if __name__=='__main__':
-    p = Paser()
+    p = Paser(0)
     p.dbSave()
