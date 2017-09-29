@@ -44,6 +44,19 @@ class Paser:
                 '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(4) > div > div.row.profile-match-overview-header > div.col-lg-10 > div > div:nth-of-type(1) > div > div.value.value-blue'
             )
 
+            fourth_rating = soup.select(
+                '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(5) > div > div.row.profile-match-overview-header > div.col-lg-10 > div > div:nth-of-type(1) > div > div.value.value-blue'
+            )
+
+            fifth_rating = soup.select(
+                '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(6) > div > div.row.profile-match-overview-header > div.col-lg-10 > div > div:nth-of-type(1) > div > div.value.value-blue'
+            )
+
+            sixth_rating = soup.select(
+                '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(7) > div > div.row.profile-match-overview-header > div.col-lg-10 > div > div:nth-of-type(1) > div > div.value.value-blue'
+            )
+
+
             first_category = soup. select(
                 '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(2) > div > div.row.profile-match-overview-header > div.col-lg-2 > a.profile-match-title.text-uppercase'
             )
@@ -55,6 +68,19 @@ class Paser:
             third_category = soup. select(
                 '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(4) > div > div.row.profile-match-overview-header > div.col-lg-2 > a.profile-match-title.text-uppercase'
             )
+
+            fourth_rating = soup. select(
+                '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(5) > div > div.row.profile-match-overview-header > div.col-lg-2 > a.profile-match-title.text-uppercase'
+            )
+
+            fifth_rating = soup. select(
+                '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(6) > div > div.row.profile-match-overview-header > div.col-lg-2 > a.profile-match-title.text-uppercase'
+            )
+
+            sixth_rating = soup. select(
+                '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(7) > div > div.row.profile-match-overview-header > div.col-lg-2 > a.profile-match-title.text-uppercase'
+            )
+
 
             if third_rating == []:
                 if second_rating == []:
