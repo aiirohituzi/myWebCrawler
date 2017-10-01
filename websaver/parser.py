@@ -133,10 +133,21 @@ class Paser:
         for arr in rating_data:
             for user, rating in arr.items():
                 print(user)
+                print(rating.get('solo-fpp'))
+                print(rating.get('duo-fpp'))
+                print(rating.get('squad-fpp'))
                 print(rating.get('solo'))
                 print(rating.get('duo'))
                 print(rating.get('squad'))
-                    # RatingData(userName=user, solo=rating.get('solo'), duo=rating.get('duo'), squad=rating.get('squad')).save()
+                # RatingData(
+                #     userName=user,
+                #     solofpp=rating.get('solo-fpp'),
+                #     duofpp=rating.get('duo-fpp'),
+                #     squadfpp=rating.get('squad-fpp'),
+                #     solo=rating.get('solo'),
+                #     duo=rating.get('duo'),
+                #     squad=rating.get('squad')
+                # ).save()
             # self.SAVE_COUNT = 0
         # self.SAVE_COUNT += 1
         # threading.Timer(CRAWLER_TIME + random.randrange(1,5), self.dbSave).start()
