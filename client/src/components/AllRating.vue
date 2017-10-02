@@ -9,6 +9,9 @@
                     <th>SOLO</th>
                     <th>DUO</th>
                     <th>SQUAD</th>
+                    <th>SOLO-FPP</th>
+                    <th>DUO-FPP</th>
+                    <th>SQUAD-FPP</th>
                     <th>Update time</th>
                 </tr>
             </thead>
@@ -18,6 +21,9 @@
                     <td>{{ ratings[n-1].SOLO }}</td>
                     <td>{{ ratings[n-1].DUO }}</td>
                     <td>{{ ratings[n-1].SQUAD }}</td>
+                    <td>{{ ratings[n-1].SOLOFPP }}</td>
+                    <td>{{ ratings[n-1].DUOFPP }}</td>
+                    <td>{{ ratings[n-1].SQUADFPP }}</td>
                     <td>{{ ratings[n-1].Update_time }}</td>
                 </tr>
             </tbody>

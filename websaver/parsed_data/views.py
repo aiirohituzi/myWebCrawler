@@ -16,6 +16,9 @@ def getRating(request):
             'SOLO': r.solo,
             'DUO': r.duo,
             'SQUAD': r.squad,
+            'SOLOFPP': r.solofpp,
+            'DUOFPP': r.duofpp,
+            'SQUADFPP': r.squadfpp,
             'Update_time': datetime.datetime.strftime(r.created_at, "%Y-%m-%d %H:%M:%S"),
         })
     data = json.dumps(data, indent=4)
@@ -33,6 +36,9 @@ def getRecentRating(request):
             'SOLO': r[0].solo,
             'DUO': r[0].duo,
             'SQUAD': r[0].squad,
+            'SOLOFPP': r[0].solofpp,
+            'DUOFPP': r[0].duofpp,
+            'SQUADFPP': r[0].squadfpp,
             'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
         })
     data = json.dumps(data, indent=4)
@@ -53,6 +59,9 @@ def getUserRating(request):
                 'SOLO': r.solo,
                 'DUO': r.duo,
                 'SQUAD': r.squad,
+                'SOLOFPP': r.solofpp,
+                'DUOFPP': r.duofpp,
+                'SQUADFPP': r.squadfpp,
                 'Update_time': datetime.datetime.strftime(r.created_at, "%Y-%m-%d %H:%M:%S"),
             })
         data = json.dumps(data, indent=4)
