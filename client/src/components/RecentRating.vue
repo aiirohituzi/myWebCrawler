@@ -9,6 +9,9 @@
                     <th>SOLO</th>
                     <th>DUO</th>
                     <th>SQUAD</th>
+                    <th>SOLO-FPP</th>
+                    <th>DUO-FPP</th>
+                    <th>SQUAD-FPP</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,6 +20,9 @@
                     <td>{{ rating.SOLO }}</td>
                     <td>{{ rating.DUO }}</td>
                     <td>{{ rating.SQUAD }}</td>
+                    <td>{{ rating.SOLOFPP }}</td>
+                    <td>{{ rating.DUOFPP }}</td>
+                    <td>{{ rating.SQUADFPP }}</td>
                 </tr>
             </tbody>
         </table>

@@ -71,6 +71,7 @@ def getUserRating(request):
         print("error - User not found")
     return HttpResponse(data, content_type = "application/json")
 
+
 def getSoloRanking(request):
     data = []
     for user in config.USER_LIST:
@@ -169,6 +170,108 @@ def getSquadRanking(request):
     sorted_data = sorted(data, key=operator.itemgetter('SQUAD'), reverse=True)
     sorted_data = json.dumps(sorted_data, indent=4)
     print("Get - squad ranking data")
+    # print(sorted_data)
+    return HttpResponse(sorted_data, content_type = "application/json")
+
+
+def getSolofppRanking(request):
+    data = []
+    for user in config.USER_LIST:
+        r = RatingData.objects.filter(userName=user).order_by('-created_at')
+        solofpp = r[0].solofpp
+        duofpp = r[0].duofpp
+        squadfpp = r[0].squadfpp
+        if r[0].solofpp != None:
+            solofpp = int(solofpp.replace(',', ''))
+        else:
+            solofpp = 0
+        if r[0].duofpp != None:
+            duofpp = int(duofpp.replace(',', ''))
+        else:
+            duofpp = 0
+        if r[0].squadfpp != None:
+            squadfpp = int(squadfpp.replace(',', ''))
+        else:
+            squadfpp = 0
+        data.append({
+            'id': r[0].id,
+            'USER': r[0].userName,
+            'SOLO': solofpp,
+            'DUO': duofpp,
+            'SQUAD': squadfpp,
+            'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
+        })
+    sorted_data = sorted(data, key=operator.itemgetter('SOLO'), reverse=True)
+    sorted_data = json.dumps(sorted_data, indent=4)
+    print("Get - solo-fpp ranking data")
+    # print(sorted_data)
+    return HttpResponse(sorted_data, content_type = "application/json")
+
+
+def getDuofppRanking(request):
+    data = []
+    for user in config.USER_LIST:
+        r = RatingData.objects.filter(userName=user).order_by('-created_at')
+        solofpp = r[0].solofpp
+        duofpp = r[0].duofpp
+        squadfpp = r[0].squadfpp
+        if r[0].solofpp != None:
+            solofpp = int(solofpp.replace(',', ''))
+        else:
+            solofpp = 0
+        if r[0].duofpp != None:
+            duofpp = int(duofpp.replace(',', ''))
+        else:
+            duofpp = 0
+        if r[0].squadfpp != None:
+            squadfpp = int(squadfpp.replace(',', ''))
+        else:
+            squadfpp = 0
+        data.append({
+            'id': r[0].id,
+            'USER': r[0].userName,
+            'SOLO': solofpp,
+            'DUO': duofpp,
+            'SQUAD': squadfpp,
+            'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
+        })
+    sorted_data = sorted(data, key=operator.itemgetter('DUO'), reverse=True)
+    sorted_data = json.dumps(sorted_data, indent=4)
+    print("Get - duo-fpp ranking data")
+    # print(sorted_data)
+    return HttpResponse(sorted_data, content_type = "application/json")
+
+
+def getSquadfppRanking(request):
+    data = []
+    for user in config.USER_LIST:
+        r = RatingData.objects.filter(userName=user).order_by('-created_at')
+        solofpp = r[0].solofpp
+        duofpp = r[0].duofpp
+        squadfpp = r[0].squadfpp
+        if r[0].solofpp != None:
+            solofpp = int(solofpp.replace(',', ''))
+        else:
+            solofpp = 0
+        if r[0].duofpp != None:
+            duofpp = int(duofpp.replace(',', ''))
+        else:
+            duofpp = 0
+        if r[0].squadfpp != None:
+            squadfpp = int(squadfpp.replace(',', ''))
+        else:
+            squadfpp = 0
+        data.append({
+            'id': r[0].id,
+            'USER': r[0].userName,
+            'SOLO': solofpp,
+            'DUO': duofpp,
+            'SQUAD': squadfpp,
+            'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
+        })
+    sorted_data = sorted(data, key=operator.itemgetter('SQUAD'), reverse=True)
+    sorted_data = json.dumps(sorted_data, indent=4)
+    print("Get - squad-fpp ranking data")
     # print(sorted_data)
     return HttpResponse(sorted_data, content_type = "application/json")
 

@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-<h1>각 분야 랭킹</h1>
+    <h1>3인칭 랭킹</h1>
     <hr>
     <div id="Ranking" class="row">
         <div class="col-md-6">
@@ -73,6 +73,80 @@
             </table>
         </div>
     </div>
+    
+    <h1>1인칭 랭킹</h1>
+    <hr>
+    <div id="FppRanking" class="row">
+        <div class="col-md-6">
+            <h3>SOLO-FPP RANKING</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>USER</th>
+                        <th>SOLO-FPP</th>
+                        <th>DUO-FPP</th>
+                        <th>SQUAD-FPP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(rating, index) in sf_ratings" :rating="rating" @click="userRating(rating.USER)">
+                        <td>{{ index+1 }}</td>
+                        <td>{{ rating.USER }}</td>
+                        <td><b>{{ rating.SOLOFPP }}</b></td>
+                        <td>{{ rating.DUOFPP }}</td>
+                        <td>{{ rating.SQUADFPP }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <h3>DUO-FPP RANKING</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>USER</th>
+                        <th>SOLO-FPP</th>
+                        <th>DUO-FPP</th>
+                        <th>SQUAD-FPP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(rating, index) in df_ratings" :rating="rating" @click="userRating(rating.USER)">
+                        <td>{{ index+1 }}</td>
+                        <td>{{ rating.USER }}</td>
+                        <td>{{ rating.SOLOFPP }}</td>
+                        <td><b>{{ rating.DUOFPP }}</b></td>
+                        <td>{{ rating.SQUADFPP }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-12">
+            <h3>SQUAD-FPP RANKING</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>USER</th>
+                        <th>SOLO-FPP</th>
+                        <th>DUO-FPP</th>
+                        <th>SQUAD-FPP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(rating, index) in qf_ratings" :rating="rating" @click="userRating(rating.USER)">
+                        <td>{{ index+1 }}</td>
+                        <td>{{ rating.USER }}</td>
+                        <td>{{ rating.SOLOFPP }}</td>
+                        <td>{{ rating.DUOFPP }}</td>
+                        <td><b>{{ rating.SQUADFPP }}</b></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 </template>
 
@@ -85,7 +159,10 @@ export default {
         return {
             s_ratings: [],
             d_ratings: [],
-            q_ratings: []
+            q_ratings: [],
+            sf_ratings: [],
+            df_ratings: [],
+            qf_ratings: []
         }
     },
     methods: {
@@ -109,6 +186,28 @@ export default {
 
             axios.get('http://localhost:8000/squadRanking/').then((response) => {
                 this.q_ratings = response.data
+                // console.log(response)
+            }, (error) => {
+                console.log(error)
+            })
+
+
+            axios.get('http://localhost:8000/solofppRanking/').then((response) => {
+                this.sf_ratings = response.data
+                // console.log(response)
+            }, (error) => {
+                console.log(error)
+            })
+            
+            axios.get('http://localhost:8000/duofppRanking/').then((response) => {
+                this.df_ratings = response.data
+                // console.log(response)
+            }, (error) => {
+                console.log(error)
+            })
+
+            axios.get('http://localhost:8000/squadfppRanking/').then((response) => {
+                this.qf_ratings = response.data
                 // console.log(response)
             }, (error) => {
                 console.log(error)

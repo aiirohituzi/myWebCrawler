@@ -18,9 +18,15 @@ from django.contrib import admin
 from parsed_data.views import getRating
 from parsed_data.views import getRecentRating
 from parsed_data.views import getUserRating
+
 from parsed_data.views import getSoloRanking
 from parsed_data.views import getDuoRanking
 from parsed_data.views import getSquadRanking
+
+from parsed_data.views import getSolofppRanking
+from parsed_data.views import getDuofppRanking
+from parsed_data.views import getSquadfppRanking
+
 from parsed_data.views import getUserRatingChart
 from parsed_data.views import getUserList
 
@@ -32,6 +38,9 @@ urlpatterns = [
     url(r'^soloRanking/$', getSoloRanking, name='getSoloRanking'),
     url(r'^duoRanking/$', getDuoRanking, name='getDuoRanking'),
     url(r'^squadRanking/$', getSquadRanking, name='getSquadRanking'),
+    url(r'^solofppRanking/$', getSolofppRanking, name='getSolofppRanking'),
+    url(r'^duofppRanking/$', getDuofppRanking, name='getDuofppRanking'),
+    url(r'^squadfppRanking/$', getSquadfppRanking, name='getSquadfppRanking'),
     url(r'^userRatingChart/$', getUserRatingChart, name='getUserRatingChart'),
     url(r'^userList/$', getUserList, name='getUserList'),
 ]
