@@ -37,88 +37,38 @@ class Paser:
             soup = BeautifulSoup(html, 'html.parser')
 
 
-            for i in range(2, 8):
-                r = soup.select(
-                    '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(' + str(i) + ') > div > div.row.profile-match-overview-header > div.col-lg-10 > div > div:nth-of-type(1) > div > div.value.value-blue'
-                )
-                c = soup. select(
-                    '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(' + str(i) + ') > div > div.row.profile-match-overview-header > div.col-lg-2 > a.profile-match-title.text-uppercase'
-                )
+            
+            solo = soup.select(
+                '#profile > div.profileContent > div.modeSummary > section.solo.modeItem > div.mode-section.tpp > div.overview > div.rating > span.value'
+            )
+            duo = soup.select(
+                '#profile > div.profileContent > div.modeSummary > section.duo.modeItem > div.mode-section.tpp > div.overview > div.rating > span.value'
+            )
+            squad = soup.select(
+                '#profile > div.profileContent > div.modeSummary > section.squad.modeItem > div.mode-section.tpp > div.overview > div.rating > span.value'
+            )
+            solofpp = soup.select(
+                '#profile > div.profileContent > div.modeSummary > section.solo.modeItem > div.mode-section.fpp > div.overview > div.rating > span.value'
+            )
+            duofpp = soup.select(
+                '#profile > div.profileContent > div.modeSummary > section.duo.modeItem > div.mode-section.fpp > div.overview > div.rating > span.value'
+            )
+            squadfpp = soup.select(
+                '#profile > div.profileContent > div.modeSummary > section.squad.modeItem > div.mode-section.fpp > div.overview > div.rating > span.value'
+            )
 
-                if r != []:
-                    ratings.update({c[0].text: r[0].text})
-
-
-            # first_rating = soup.select(
-            #     '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(2) > div > div.row.profile-match-overview-header > div.col-lg-10 > div > div:nth-of-type(1) > div > div.value.value-blue'
-            # )
-
-            # second_rating = soup.select(
-            #     '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(3) > div > div.row.profile-match-overview-header > div.col-lg-10 > div > div:nth-of-type(1) > div > div.value.value-blue'
-            # )
-
-            # third_rating = soup.select(
-            #     '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(4) > div > div.row.profile-match-overview-header > div.col-lg-10 > div > div:nth-of-type(1) > div > div.value.value-blue'
-            # )
-
-            # fourth_rating = soup.select(
-            #     '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(5) > div > div.row.profile-match-overview-header > div.col-lg-10 > div > div:nth-of-type(1) > div > div.value.value-blue'
-            # )
-
-            # fifth_rating = soup.select(
-            #     '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(6) > div > div.row.profile-match-overview-header > div.col-lg-10 > div > div:nth-of-type(1) > div > div.value.value-blue'
-            # )
-
-            # sixth_rating = soup.select(
-            #     '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(7) > div > div.row.profile-match-overview-header > div.col-lg-10 > div > div:nth-of-type(1) > div > div.value.value-blue'
-            # )
-
-
-            # first_category = soup. select(
-            #     '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(2) > div > div.row.profile-match-overview-header > div.col-lg-2 > a.profile-match-title.text-uppercase'
-            # )
-
-            # second_category = soup. select(
-            #     '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(3) > div > div.row.profile-match-overview-header > div.col-lg-2 > a.profile-match-title.text-uppercase'
-            # )
-
-            # third_category = soup. select(
-            #     '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(4) > div > div.row.profile-match-overview-header > div.col-lg-2 > a.profile-match-title.text-uppercase'
-            # )
-
-            # fourth_rating = soup. select(
-            #     '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(5) > div > div.row.profile-match-overview-header > div.col-lg-2 > a.profile-match-title.text-uppercase'
-            # )
-
-            # fifth_rating = soup. select(
-            #     '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(6) > div > div.row.profile-match-overview-header > div.col-lg-2 > a.profile-match-title.text-uppercase'
-            # )
-
-            # sixth_rating = soup. select(
-            #     '#body > div > div.d-flex.row.page-container > div.col.col-main > div:nth-of-type(7) > div > div.row.profile-match-overview-header > div.col-lg-2 > a.profile-match-title.text-uppercase'
-            # )
-
-
-            # if third_rating == []:
-            #     if second_rating == []:
-            #         data.append({
-            #             user: {first_category[0].text : first_rating[0].text}
-            #         })
-            #     else:
-            #         data.append({
-            #             user: {
-            #                 first_category[0].text : first_rating[0].text,
-            #                 second_category[0].text: second_rating[0].text
-            #             }
-            #         })
-            # else:
-            #     data.append({
-            #         user: {
-            #             first_category[0].text : first_rating[0].text,
-            #             second_category[0].text: second_rating[0].text,
-            #             third_category[0].text: third_rating[0].text,
-            #         }
-            #     })
+            if solo != []:
+                ratings.update({'solo': solo[0].text})
+            if duo != []:
+                ratings.update({'duo': duo[0].text})
+            if squad != []:
+                ratings.update({'squad': squad[0].text})
+            if solofpp != []:
+                ratings.update({'solofpp': solofpp[0].text})
+            if duofpp != []:
+                ratings.update({'duofpp': duofpp[0].text})
+            if squadfpp != []:
+                ratings.update({'squadfpp': squadfpp[0].text})
             
             data.append({
                 user: ratings
@@ -133,21 +83,21 @@ class Paser:
         for arr in rating_data:
             for user, rating in arr.items():
                 print(user)
-                print(rating.get('solo-fpp'))
-                print(rating.get('duo-fpp'))
-                print(rating.get('squad-fpp'))
                 print(rating.get('solo'))
                 print(rating.get('duo'))
                 print(rating.get('squad'))
-                # RatingData(
-                #     userName=user,
-                #     solofpp=rating.get('solo-fpp'),
-                #     duofpp=rating.get('duo-fpp'),
-                #     squadfpp=rating.get('squad-fpp'),
-                #     solo=rating.get('solo'),
-                #     duo=rating.get('duo'),
-                #     squad=rating.get('squad')
-                # ).save()
+                print(rating.get('solofpp'))
+                print(rating.get('duofpp'))
+                print(rating.get('squadfpp'))
+                RatingData(
+                    userName=user,
+                    solo=rating.get('solo'),
+                    duo=rating.get('duo'),
+                    squad=rating.get('squad'),
+                    solofpp=rating.get('solofpp'),
+                    duofpp=rating.get('duofpp'),
+                    squadfpp=rating.get('squadfpp'),
+                ).save()
             # self.SAVE_COUNT = 0
         # self.SAVE_COUNT += 1
         # threading.Timer(CRAWLER_TIME + random.randrange(1,5), self.dbSave).start()

@@ -1,8 +1,8 @@
 <template>
-<div class="container">
+<div id="Ranking" class="container">
     <h1>3인칭 랭킹</h1>
     <hr>
-    <div id="Ranking" class="row">
+    <div class="row">
         <div class="col-md-6">
             <h3>SOLO RANKING</h3>
             <table class="table table-hover">
@@ -76,7 +76,7 @@
     
     <h1>1인칭 랭킹</h1>
     <hr>
-    <div id="FppRanking" class="row">
+    <div class="row">
         <div class="col-md-6">
             <h3>SOLO-FPP RANKING</h3>
             <table class="table table-hover">

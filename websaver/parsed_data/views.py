@@ -196,12 +196,12 @@ def getSolofppRanking(request):
         data.append({
             'id': r[0].id,
             'USER': r[0].userName,
-            'SOLO': solofpp,
-            'DUO': duofpp,
-            'SQUAD': squadfpp,
+            'SOLOFPP': solofpp,
+            'DUOFPP': duofpp,
+            'SQUADFPP': squadfpp,
             'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
         })
-    sorted_data = sorted(data, key=operator.itemgetter('SOLO'), reverse=True)
+    sorted_data = sorted(data, key=operator.itemgetter('SOLOFPP'), reverse=True)
     sorted_data = json.dumps(sorted_data, indent=4)
     print("Get - solo-fpp ranking data")
     # print(sorted_data)
@@ -230,12 +230,12 @@ def getDuofppRanking(request):
         data.append({
             'id': r[0].id,
             'USER': r[0].userName,
-            'SOLO': solofpp,
-            'DUO': duofpp,
-            'SQUAD': squadfpp,
+            'SOLOFPP': solofpp,
+            'DUOFPP': duofpp,
+            'SQUADFPP': squadfpp,
             'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
         })
-    sorted_data = sorted(data, key=operator.itemgetter('DUO'), reverse=True)
+    sorted_data = sorted(data, key=operator.itemgetter('DUOFPP'), reverse=True)
     sorted_data = json.dumps(sorted_data, indent=4)
     print("Get - duo-fpp ranking data")
     # print(sorted_data)
@@ -264,12 +264,12 @@ def getSquadfppRanking(request):
         data.append({
             'id': r[0].id,
             'USER': r[0].userName,
-            'SOLO': solofpp,
-            'DUO': duofpp,
-            'SQUAD': squadfpp,
+            'SOLOFPP': solofpp,
+            'DUOFPP': duofpp,
+            'SQUADFPP': squadfpp,
             'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
         })
-    sorted_data = sorted(data, key=operator.itemgetter('SQUAD'), reverse=True)
+    sorted_data = sorted(data, key=operator.itemgetter('SQUADFPP'), reverse=True)
     sorted_data = json.dumps(sorted_data, indent=4)
     print("Get - squad-fpp ranking data")
     # print(sorted_data)
