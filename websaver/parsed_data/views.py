@@ -286,6 +286,10 @@ def getUserRatingChart(request):
             solo = r.solo
             duo = r.duo
             squad = r.squad
+            solofpp = r.solofpp
+            duofpp = r.duofpp
+            squadfpp = r.squadfpp
+
             if r.solo != None:
                 solo = int(solo.replace(',', ''))
             else:
@@ -298,12 +302,29 @@ def getUserRatingChart(request):
                 squad = int(squad.replace(',', ''))
             else:
                 squad = 0
+
+            if r.solofpp != None:
+                solofpp = int(solofpp.replace(',', ''))
+            else:
+                solofpp = 0
+            if r.duofpp != None:
+                duofpp = int(duofpp.replace(',', ''))
+            else:
+                duofpp = 0
+            if r.squadfpp != None:
+                squadfpp = int(squadfpp.replace(',', ''))
+            else:
+                squadfpp = 0
+            
             data.append({
                 'id': r.id,
                 'USER': r.userName,
                 'SOLO': solo,
                 'DUO': duo,
                 'SQUAD': squad,
+                'SOLOFPP': solofpp,
+                'DUOFPP': duofpp,
+                'SQUADFPP': squadfpp,
                 'Update_time': datetime.datetime.strftime(r.created_at, "%Y-%m-%d %H:%M:%S"),
             })
         data = json.dumps(data, indent=4)
