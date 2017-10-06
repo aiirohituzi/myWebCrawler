@@ -22,6 +22,21 @@ export default Line.extend({
             label: 'Squad Rating',
             backgroundColor: '#7979f8',
             data: []
+          },
+          {
+            label: 'Solo-fpp Rating',
+            backgroundColor: '#078686',
+            data: []
+          },          
+          {
+            label: 'Duo-fpp Rating',
+            backgroundColor: '#860786',
+            data: []
+          },
+          {
+            label: 'Squad-fpp Rating',
+            backgroundColor: '#868607',
+            data: []
           }
         ]
       }
@@ -35,6 +50,9 @@ export default Line.extend({
           this.datacollection.datasets[0].data.push(response.data[i].SOLO)
           this.datacollection.datasets[1].data.push(response.data[i].DUO)
           this.datacollection.datasets[2].data.push(response.data[i].SQUAD)
+          this.datacollection.datasets[3].data.push(response.data[i].SOLOFPP)
+          this.datacollection.datasets[4].data.push(response.data[i].DUOFPP)
+          this.datacollection.datasets[5].data.push(response.data[i].SQUADFPP)
         }
         // console.log(this.datacollection)
       }, (error) => {
