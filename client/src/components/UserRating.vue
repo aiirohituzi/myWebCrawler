@@ -15,17 +15,19 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="rating in u_ratings" :rating="rating">
-                    <td>{{ rating.SOLO }}</td>
-                    <td>{{ rating.DUO }}</td>
-                    <td>{{ rating.SQUAD }}</td>
-                    <td>{{ rating.SOLOFPP }}</td>
-                    <td>{{ rating.DUOFPP }}</td>
-                    <td>{{ rating.SQUADFPP }}</td>
-                    <td>{{ rating.Update_time }}</td>
+                <tr v-for="n in max">
+                    <td>{{ u_ratings[n-1].SOLO }}</td>
+                    <td>{{ u_ratings[n-1].DUO }}</td>
+                    <td>{{ u_ratings[n-1].SQUAD }}</td>
+                    <td>{{ u_ratings[n-1].SOLOFPP }}</td>
+                    <td>{{ u_ratings[n-1].DUOFPP }}</td>
+                    <td>{{ u_ratings[n-1].SQUADFPP }}</td>
+                    <td>{{ u_ratings[n-1].Update_time }}</td>
                 </tr>
             </tbody>
         </table>
+        <button v-if="more" class="btn btn-primary btn-block" @click="moreData()">More</button>
+        <button v-else class="btn btn-default btn-block" disabled="disabled">No more data...</button>
     </div>
 </div>
 </template>
@@ -38,16 +40,31 @@ export default {
     data () {
         return {
             userName: this.$route.params.userName,
-            u_ratings: []
+            u_ratings: [],
+            length: null,
+            max: 10,
+            more: true,
         }
     },
     methods: {
         fetchRatings: function () {
             axios.get('http://localhost:8000/userRating/?userName=' + this.$route.params.userName).then((response) => {
                 this.u_ratings = response.data
+                this.length = response.data.length
             }, (error) => {
                 console.log(error)
             })
+        },
+        moreData () {
+            if(this.max+10 <= this.length) {
+                this.max+=10
+            } else {
+                this.max = this.length
+            }
+
+            if(this.u_ratings[this.max] == undefined) {
+                this.more = false
+            }
         }
     },
     mounted: function () {
