@@ -14,7 +14,20 @@
                     <th>Update time</th>
                 </tr>
             </thead>
-            <tbody>
+            
+            <tbody v-if="length==1">
+                <tr>
+                    <td>{{ u_ratings[0].SOLO }}</td>
+                    <td>{{ u_ratings[0].DUO }}</td>
+                    <td>{{ u_ratings[0].SQUAD }}</td>
+                    <td>{{ u_ratings[0].SOLOFPP }}</td>
+                    <td>{{ u_ratings[0].DUOFPP }}</td>
+                    <td>{{ u_ratings[0].SQUADFPP }}</td>
+                    <td>{{ u_ratings[0].Update_time }}</td>
+                </tr>
+            </tbody>
+
+            <tbody v-else>
                 <tr v-for="n in max">
                     <td>{{ u_ratings[n-1].SOLO }}</td>
                     <td>{{ u_ratings[n-1].DUO }}</td>
@@ -50,7 +63,9 @@ export default {
         fetchRatings: function () {
             axios.get('http://localhost:8000/userRating/?userName=' + this.$route.params.userName).then((response) => {
                 this.u_ratings = response.data
+                // console.log(this.u_ratings)
                 this.length = response.data.length
+                // console.log(this.length)
             }, (error) => {
                 console.log(error)
             })

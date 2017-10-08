@@ -23,7 +23,7 @@ def getRating(request):
         })
     data = json.dumps(data, indent=4)
     print("Get - rating data")
-    print(data)
+    # print(data)
     return HttpResponse(data, content_type = "application/json")
 
 def getRecentRating(request):
@@ -43,7 +43,7 @@ def getRecentRating(request):
         })
     data = json.dumps(data, indent=4)
     print("Get - recent rating data")
-    print(data)
+    # print(data)
     return HttpResponse(data, content_type = "application/json")
 
 def getUserRating(request):
@@ -66,7 +66,7 @@ def getUserRating(request):
             })
         data = json.dumps(data, indent=4)
         print("Get - '" + userName + "' rating data")
-        print(data)
+        # print(data)
     else:
         print("error - User not found")
     return HttpResponse(data, content_type = "application/json")
@@ -329,7 +329,7 @@ def getUserRatingChart(request):
             })
         data = json.dumps(data, indent=4)
         print("Get - '" + userName + "' rating chart data")
-        print(data)
+        # print(data)
     else:
         print("error - User not found")
     return HttpResponse(data, content_type = "application/json")
@@ -340,5 +340,5 @@ def getUserList(request):
         data.append(user)
     data = json.dumps(data, indent=4)
     print("Get - User list")
-    print(data)
+    # print(data)
     return HttpResponse(data, content_type = "application/json")
