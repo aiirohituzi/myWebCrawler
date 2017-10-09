@@ -15,7 +15,20 @@
                     <th>Update time</th>
                 </tr>
             </thead>
-            <tbody>
+
+            <tbody v-if="length==1">
+                <tr>
+                    <td>{{ u_ratings[0].SOLO }}</td>
+                    <td>{{ u_ratings[0].DUO }}</td>
+                    <td>{{ u_ratings[0].SQUAD }}</td>
+                    <td>{{ u_ratings[0].SOLOFPP }}</td>
+                    <td>{{ u_ratings[0].DUOFPP }}</td>
+                    <td>{{ u_ratings[0].SQUADFPP }}</td>
+                    <td>{{ u_ratings[0].Update_time }}</td>
+                </tr>
+            </tbody>
+
+            <tbody v-else>
                 <tr v-for="n in max" @click="userRating(ratings[n-1].USER)">
                     <td>{{ ratings[n-1].USER }}</td>
                     <td>{{ ratings[n-1].SOLO }}</td>
