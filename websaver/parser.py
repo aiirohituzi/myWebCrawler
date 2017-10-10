@@ -1,7 +1,10 @@
 import threading
 
-import requests
+# import requests
 from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
 import json
 import random
 
@@ -13,6 +16,11 @@ django.setup()
 from parsed_data.models import RatingData
 
 import config
+
+chrome_options = Options()
+# chrome_options.add_argument("headless")
+driver = webdriver.Chrome('../chromedriver/chromedriver', chrome_options=chrome_options)
+driver.implicitly_wait(3)
 
 CRAWLER_TIME = 600
 
@@ -29,10 +37,15 @@ class Paser:
             print(user)
             
             ratings = {}
+            
 
-            req = requests.get(config.SITE_ADDRESS + user)
+            driver.get(config.SITE_ADDRESS + user)
 
-            html = req.text
+            html = driver.page_source
+
+            # req = requests.get(config.SITE_ADDRESS + user)
+
+            # html = req.text
 
             soup = BeautifulSoup(html, 'html.parser')
 
@@ -73,6 +86,8 @@ class Paser:
             data.append({
                 user: ratings
             })
+
+        driver.close()
 
         return data
 
