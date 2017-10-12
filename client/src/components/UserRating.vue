@@ -66,6 +66,10 @@ export default {
                 // console.log(this.u_ratings)
                 this.length = response.data.length
                 // console.log(this.length)
+
+                if(this.length < this.max){
+                    this.max = this.length
+                }
             }, (error) => {
                 console.log(error)
             })

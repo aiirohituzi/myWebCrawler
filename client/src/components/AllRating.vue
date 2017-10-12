@@ -72,6 +72,10 @@ export default {
             axios.get('http://localhost:8000/rating/').then((response) => {
                 this.ratings = response.data
                 this.length = response.data.length
+
+                if(this.length < this.max){
+                    this.max = this.length
+                }
             }, (error) => {
                 console.log(error)
             })
