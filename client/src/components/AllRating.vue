@@ -16,15 +16,15 @@
                 </tr>
             </thead>
 
-            <tbody v-if="length==1">
+            <tbody v-if="length==1" @click="userRating(ratings[0].USER)">
                 <tr>
-                    <td>{{ u_ratings[0].SOLO }}</td>
-                    <td>{{ u_ratings[0].DUO }}</td>
-                    <td>{{ u_ratings[0].SQUAD }}</td>
-                    <td>{{ u_ratings[0].SOLOFPP }}</td>
-                    <td>{{ u_ratings[0].DUOFPP }}</td>
-                    <td>{{ u_ratings[0].SQUADFPP }}</td>
-                    <td>{{ u_ratings[0].Update_time }}</td>
+                    <td>{{ ratings[0].SOLO }}</td>
+                    <td>{{ ratings[0].DUO }}</td>
+                    <td>{{ ratings[0].SQUAD }}</td>
+                    <td>{{ ratings[0].SOLOFPP }}</td>
+                    <td>{{ ratings[0].DUOFPP }}</td>
+                    <td>{{ ratings[0].SQUADFPP }}</td>
+                    <td>{{ ratings[0].Update_time }}</td>
                 </tr>
             </tbody>
 
@@ -58,8 +58,19 @@ export default {
     name: 'AllRating',
     data () {
         return {
-            ratings: [],
-            length: null,
+            ratings: [
+               {
+                   'USER': 'Unknown',
+                   'SOLO': '0',
+                   'DUO': '0',
+                   'SQUAD': '0',
+                   'SOLOFPP': '0',
+                   'DUOFPP': '0',
+                   'SQUADFPP': '0',
+                   'Update_time': '0000-00-00 00:00:00'
+               }
+            ],
+            length: 1,
             max: 10,
             more: true,
         }

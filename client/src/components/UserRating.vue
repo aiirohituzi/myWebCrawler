@@ -53,8 +53,19 @@ export default {
     data () {
         return {
             userName: this.$route.params.userName,
-            u_ratings: [],
-            length: null,
+            u_ratings: [
+               {
+                   'USER': 'Unknown',
+                   'SOLO': '0',
+                   'DUO': '0',
+                   'SQUAD': '0',
+                   'SOLOFPP': '0',
+                   'DUOFPP': '0',
+                   'SQUADFPP': '0',
+                   'Update_time': '0000-00-00 00:00:00'
+               }
+            ],
+            length: 1,
             max: 10,
             more: true,
         }
