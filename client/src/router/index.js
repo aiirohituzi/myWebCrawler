@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Hello from '@/components/Hello'
+// import Hello from '@/components/Hello'
+import Home from '@/components/Home'
 import AllRating from '@/components/AllRating'
 import RecentRating from '@/components/RecentRating'
 import UserRating from '@/components/UserRating'
@@ -14,8 +15,8 @@ export default new VueRouter({
   routes: [
     {
       path: '/',
-      name: 'hello',
-      component: Hello
+      name: 'home',
+      component: Home
     },
     {
       path: '/AllRating',
