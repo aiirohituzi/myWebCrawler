@@ -3,11 +3,11 @@
     <!--<img src="./assets/logo.png">-->
     <div class="container">
       <ul class="nav nav-pills">
-          <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/AllRating">All Rating</router-link></li>
-          <li><router-link to="/RecentRating">Recent Rating</router-link></li>
-          <li><router-link to="/Ranking">Ranking</router-link></li>
-          <li><router-link to="/UserList">UserList</router-link></li>
+          <router-link tag="li" to="/" exact><a>Home</a></router-link>
+          <router-link tag="li" to="/AllRating" exact><a>All Rating</a></router-link>
+          <router-link tag="li" to="/RecentRating" exact><a>Recent Rating</a></router-link>
+          <router-link tag="li" to="/Ranking" exact><a>Ranking</a></router-link>
+          <router-link tag="li" to="/UserList" exact><a>UserList</a></router-link>
       </ul>
     </div>
     <router-view></router-view>

@@ -47,5 +47,6 @@ export default new VueRouter({
       name: 'UserList',
       component: UserList
     },
-  ]
+  ],
+  linkActiveClass: "active"
 })
