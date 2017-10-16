@@ -1,5 +1,5 @@
 <template>
-<div id="RecentRating">
+<div id="UserRating">
     <div class="container">
         <h1>{{ userName }} 의 전체 레이팅</h1>
         <table class="table table-hover">

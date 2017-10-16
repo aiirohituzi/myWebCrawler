@@ -16,7 +16,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(rating, index) in s_ratings" :rating="rating" @click="userRating(rating.USER)">
+                    <tr v-for="(rating, index) in s_ratings" @click="userRating(rating.USER)">
                         <td>{{ index+1 }}</td>
                         <td>{{ rating.USER }}</td>
                         <td><b>{{ rating.SOLO }}</b></td>
@@ -39,7 +39,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(rating, index) in d_ratings" :rating="rating" @click="userRating(rating.USER)">
+                    <tr v-for="(rating, index) in d_ratings" @click="userRating(rating.USER)">
                         <td>{{ index+1 }}</td>
                         <td>{{ rating.USER }}</td>
                         <td>{{ rating.SOLO }}</td>
@@ -62,7 +62,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(rating, index) in q_ratings" :rating="rating" @click="userRating(rating.USER)">
+                    <tr v-for="(rating, index) in q_ratings" @click="userRating(rating.USER)">
                         <td>{{ index+1 }}</td>
                         <td>{{ rating.USER }}</td>
                         <td>{{ rating.SOLO }}</td>
@@ -90,7 +90,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(rating, index) in sf_ratings" :rating="rating" @click="userRating(rating.USER)">
+                    <tr v-for="(rating, index) in sf_ratings" @click="userRating(rating.USER)">
                         <td>{{ index+1 }}</td>
                         <td>{{ rating.USER }}</td>
                         <td><b>{{ rating.SOLOFPP }}</b></td>
@@ -113,7 +113,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(rating, index) in df_ratings" :rating="rating" @click="userRating(rating.USER)">
+                    <tr v-for="(rating, index) in df_ratings" @click="userRating(rating.USER)">
                         <td>{{ index+1 }}</td>
                         <td>{{ rating.USER }}</td>
                         <td>{{ rating.SOLOFPP }}</td>
@@ -136,7 +136,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(rating, index) in qf_ratings" :rating="rating" @click="userRating(rating.USER)">
+                    <tr v-for="(rating, index) in qf_ratings" @click="userRating(rating.USER)">
                         <td>{{ index+1 }}</td>
                         <td>{{ rating.USER }}</td>
                         <td>{{ rating.SOLOFPP }}</td>

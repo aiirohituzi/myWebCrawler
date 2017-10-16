@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="rating in r_ratings" :rating="rating" @click="userRating(rating.USER)">
+                <tr v-for="rating in r_ratings" @click="userRating(rating.USER)">
                     <td>{{ rating.USER }}</td>
                     <td>{{ rating.SOLO }}</td>
                     <td>{{ rating.DUO }}</td>
