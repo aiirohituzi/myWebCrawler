@@ -12,7 +12,7 @@
     <div class="row">
         <p>다른 유저의 레이팅 정보를 찾아보고 싶다면?</p>
         <div class="input-group col-md-6 col-xs-10 col-md-offset-3 col-xs-offset-1">
-            <input type="text" class="form-control" placeholder="PUBG nickname" v-model="id">
+            <input type="text" class="form-control" placeholder="PUBG nickname" v-model="id" v-on:keyup.enter="ratingSearch(id)">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button" @click="ratingSearch(id)">Search</button>
             </span>
