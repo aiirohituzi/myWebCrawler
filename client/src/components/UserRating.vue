@@ -1,7 +1,7 @@
 <template>
 <div id="UserRating">
     <div class="container">
-        <h1>{{ userName }} 의 전체 레이팅</h1>
+        <h1>{{ userName }} 의 전체 레이팅 <button class="btn btn-default btn-xs" @click="detail()">상세보기</button></h1>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -85,7 +85,7 @@ export default {
                 console.log(error)
             })
         },
-        moreData () {
+        moreData: function () {
             if(this.max+10 <= this.length) {
                 this.max+=10
             } else {
@@ -95,6 +95,9 @@ export default {
             if(this.u_ratings[this.max] == undefined) {
                 this.more = false
             }
+        },
+        detail: function() {
+            window.open("https://dak.gg/profile/"+this.userName)
         }
     },
     mounted: function () {
