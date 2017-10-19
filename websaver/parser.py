@@ -61,6 +61,7 @@ class Paser:
             squad = soup.select(
                 '#profile > div.profileContent > div.modeSummary > section.squad.modeItem > div.mode-section.tpp > div.overview > div.rating > span.value'
             )
+
             solofpp = soup.select(
                 '#profile > div.profileContent > div.modeSummary > section.solo.modeItem > div.mode-section.fpp > div.overview > div.rating > span.value'
             )
@@ -69,6 +70,16 @@ class Paser:
             )
             squadfpp = soup.select(
                 '#profile > div.profileContent > div.modeSummary > section.squad.modeItem > div.mode-section.fpp > div.overview > div.rating > span.value'
+            )
+
+            solokd = soup.select(
+                '#profile > div.profileContent > div.modeSummary > section.solo.modeItem > div.mode-section.tpp > div.stats > div.kd.stats-item.stats-top-graph > p'
+            )
+            duokd = soup.select(
+                '#profile > div.profileContent > div.modeSummary > section.duo.modeItem > div.mode-section.tpp > div.stats > div.kd.stats-item.stats-top-graph > p'
+            )
+            squadkd = soup.select(
+                '#profile > div.profileContent > div.modeSummary > section.squad.modeItem > div.mode-section.tpp > div.stats > div.kd.stats-item.stats-top-graph > p'
             )
 
             if solo != []:
@@ -83,6 +94,12 @@ class Paser:
                 ratings.update({'duofpp': duofpp[0].text})
             if squadfpp != []:
                 ratings.update({'squadfpp': squadfpp[0].text})
+            if solokd != []:
+                ratings.update({'solokd': solokd[0].text.replace(" ", "").rstrip().lstrip()})
+            if duokd != []:
+                ratings.update({'duokd': duokd[0].text.replace(" ", "").rstrip().lstrip()})
+            if squadkd != []:
+                ratings.update({'squadkd': squadkd[0].text.replace(" ", "").rstrip().lstrip()})
             
             data.append({
                 user: ratings
@@ -99,12 +116,9 @@ class Paser:
         for arr in rating_data:
             for user, rating in arr.items():
                 print(user)
-                print(rating.get('solo'))
-                print(rating.get('duo'))
-                print(rating.get('squad'))
-                print(rating.get('solofpp'))
-                print(rating.get('duofpp'))
-                print(rating.get('squadfpp'))
+                print(str(rating.get('solo')) + '/' + str(rating.get('duo')) + '/' + str(rating.get('squad')))
+                print(str(rating.get('solofpp')) + '/' + str(rating.get('duofpp')) + '/' + str(rating.get('squadfpp')))
+                print(str(rating.get('solokd')) + '/' + str(rating.get('duokd')) + '/' + str(rating.get('squadkd')))
                 RatingData(
                     userName=user,
                     solo=rating.get('solo'),
@@ -113,6 +127,9 @@ class Paser:
                     solofpp=rating.get('solofpp'),
                     duofpp=rating.get('duofpp'),
                     squadfpp=rating.get('squadfpp'),
+                    solokd=rating.get('solokd'),
+                    duokd=rating.get('duokd'),
+                    squadkd=rating.get('squadkd'),
                 ).save()
             # self.SAVE_COUNT = 0
         # self.SAVE_COUNT += 1

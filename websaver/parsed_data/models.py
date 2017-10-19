@@ -9,6 +9,9 @@ class RatingData(models.Model):
     solo = models.CharField(max_length=5, null=True)
     duo = models.CharField(max_length=5, null=True)
     squad = models.CharField(max_length=5, null=True)
+    solokd = models.CharField(max_length=5, null=True)
+    duokd = models.CharField(max_length=5, null=True)
+    squadkd = models.CharField(max_length=5, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
