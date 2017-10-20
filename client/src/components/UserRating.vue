@@ -2,6 +2,27 @@
 <div id="UserRating">
     <div class="container">
         <h1>{{ userName }} 의 전체 레이팅 <button class="btn btn-default btn-xs" @click="detail()">상세보기</button></h1>
+        <div class=" col-md-4 col-md-offset-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">최근 K / D 수치</div>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>SOLO</th>
+                            <th>DUO</th>
+                            <th>SQUAD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{u_ratings[0].SOLOKD}}</td>
+                            <td>{{u_ratings[0].DUOKD}}</td>
+                            <td>{{u_ratings[0].SQUADKD}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <table class="table table-hover">
             <thead>
                 <tr>

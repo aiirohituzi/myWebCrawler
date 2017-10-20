@@ -62,6 +62,9 @@ def getUserRating(request):
                 'SOLOFPP': r.solofpp,
                 'DUOFPP': r.duofpp,
                 'SQUADFPP': r.squadfpp,
+                'SOLOKD': r.solokd,
+                'DUOKD': r.duokd,
+                'SQUADKD': r.squadkd,
                 'Update_time': datetime.datetime.strftime(r.created_at, "%Y-%m-%d %H:%M:%S"),
             })
         data = json.dumps(data, indent=4)
