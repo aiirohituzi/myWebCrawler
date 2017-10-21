@@ -82,24 +82,43 @@ class Paser:
                 '#profile > div.profileContent > div.modeSummary > section.squad.modeItem > div.mode-section.tpp > div.stats > div.kd.stats-item.stats-top-graph > p'
             )
 
+            solofppkd = soup.select(
+                '#profile > div.profileContent > div.modeSummary > section.solo.modeItem > div.mode-section.fpp > div.stats > div.kd.stats-item.stats-top-graph > p'
+            )
+            duofppkd = soup.select(
+                '#profile > div.profileContent > div.modeSummary > section.duo.modeItem > div.mode-section.fpp > div.stats > div.kd.stats-item.stats-top-graph > p'
+            )
+            squadfppkd = soup.select(
+                '#profile > div.profileContent > div.modeSummary > section.squad.modeItem > div.mode-section.fpp > div.stats > div.kd.stats-item.stats-top-graph > p'
+            )
+
             if solo != []:
                 ratings.update({'solo': solo[0].text})
             if duo != []:
                 ratings.update({'duo': duo[0].text})
             if squad != []:
                 ratings.update({'squad': squad[0].text})
+
             if solofpp != []:
                 ratings.update({'solofpp': solofpp[0].text})
             if duofpp != []:
                 ratings.update({'duofpp': duofpp[0].text})
             if squadfpp != []:
                 ratings.update({'squadfpp': squadfpp[0].text})
+
             if solokd != []:
                 ratings.update({'solokd': solokd[0].text.replace(" ", "").rstrip().lstrip()})
             if duokd != []:
                 ratings.update({'duokd': duokd[0].text.replace(" ", "").rstrip().lstrip()})
             if squadkd != []:
                 ratings.update({'squadkd': squadkd[0].text.replace(" ", "").rstrip().lstrip()})
+
+            if solofppkd != []:
+                ratings.update({'solofppkd': solofppkd[0].text.replace(" ", "").rstrip().lstrip()})
+            if duofppkd != []:
+                ratings.update({'duofppkd': duofppkd[0].text.replace(" ", "").rstrip().lstrip()})
+            if squadfppkd != []:
+                ratings.update({'squadfppkd': squadfppkd[0].text.replace(" ", "").rstrip().lstrip()})
             
             data.append({
                 user: ratings
@@ -119,6 +138,7 @@ class Paser:
                 print(str(rating.get('solo')) + '/' + str(rating.get('duo')) + '/' + str(rating.get('squad')))
                 print(str(rating.get('solofpp')) + '/' + str(rating.get('duofpp')) + '/' + str(rating.get('squadfpp')))
                 print(str(rating.get('solokd')) + '/' + str(rating.get('duokd')) + '/' + str(rating.get('squadkd')))
+                print(str(rating.get('solofppkd')) + '/' + str(rating.get('duofppkd')) + '/' + str(rating.get('squadfppkd')))
                 RatingData(
                     userName=user,
                     solo=rating.get('solo'),
@@ -130,6 +150,9 @@ class Paser:
                     solokd=rating.get('solokd'),
                     duokd=rating.get('duokd'),
                     squadkd=rating.get('squadkd'),
+                    solofppkd=rating.get('solofppkd'),
+                    duofppkd=rating.get('duofppkd'),
+                    squadfppkd=rating.get('squadfppkd'),
                 ).save()
             # self.SAVE_COUNT = 0
         # self.SAVE_COUNT += 1
