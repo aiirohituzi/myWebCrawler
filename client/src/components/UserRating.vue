@@ -15,9 +15,31 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{u_ratings[0].SOLOKD}}</td>
-                            <td>{{u_ratings[0].DUOKD}}</td>
-                            <td>{{u_ratings[0].SQUADKD}}</td>
+                            <td v-if="u_ratings[0].SOLOKD != null">{{u_ratings[0].SOLOKD}}</td>
+                            <td v-else>-</td>
+                            <td v-if="u_ratings[0].DUOKD != null">{{u_ratings[0].DUOKD}}</td>
+                            <td v-else>-</td>
+                            <td v-if="u_ratings[0].SQUADKD != null">{{u_ratings[0].SQUADKD}}</td>
+                            <td v-else>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>SOLO-FPP</th>
+                            <th>DUO-FPP</th>
+                            <th>SQUAD-FPP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td v-if="u_ratings[0].SOLOFPPKD != null">{{u_ratings[0].SOLOFPPKD}}</td>
+                            <td v-else>-</td>
+                            <td v-if="u_ratings[0].DUOFPPKD != null">{{u_ratings[0].DUOFPPKD}}</td>
+                            <td v-else>-</td>
+                            <td v-if="u_ratings[0].SQUADFPPKD != null">{{u_ratings[0].SQUADFPPKD}}</td>
+                            <td v-else>-</td>
                         </tr>
                     </tbody>
                 </table>
