@@ -22,6 +22,8 @@ class RatingData(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
 
+    season = models.CharField(max_length=10, null=True)
+
     class Meta:
         ordering = ('created_at',)
 

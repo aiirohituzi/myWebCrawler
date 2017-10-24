@@ -7,6 +7,7 @@ from selenium.webdriver.chrome.options import Options
 
 import json
 import random
+import datetime
 
 import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "websaver.settings")
@@ -25,6 +26,8 @@ driver.implicitly_wait(3)
 
 CRAWLER_TIME = 600
 
+SEASON = "시즌 5"
+
 class Paser:
     SAVE_COUNT = 0
 
@@ -38,7 +41,6 @@ class Paser:
             print(user)
             
             ratings = {}
-            
 
             driver.get(config.SITE_ADDRESS + user)
 
@@ -153,6 +155,7 @@ class Paser:
                     solofppkd=rating.get('solofppkd'),
                     duofppkd=rating.get('duofppkd'),
                     squadfppkd=rating.get('squadfppkd'),
+                    season=SEASON
                 ).save()
             # self.SAVE_COUNT = 0
         # self.SAVE_COUNT += 1
