@@ -26,7 +26,7 @@ driver.implicitly_wait(3)
 
 CRAWLER_TIME = 600
 
-SEASON = "시즌 5"
+SEASON = config.CURRENT_SEASON
 
 class Paser:
     SAVE_COUNT = 0

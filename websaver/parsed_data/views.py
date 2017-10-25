@@ -49,9 +49,9 @@ def getRecentRating(request):
 def getUserRating(request):
     data = []
     userName = request.GET.get('userName', False)
-
+    season = request.GET.get('season', config.CURRENT_SEASON)
     if userName:
-        obj = RatingData.objects.filter(userName=userName).order_by('-created_at')
+        obj = RatingData.objects.filter(userName=userName, season=season).order_by('-created_at')
         for r in obj:
             data.append({
                 'id': r.id,
@@ -285,9 +285,10 @@ def getSquadfppRanking(request):
 def getUserRatingChart(request):
     data = []
     userName = request.GET.get('userName', False)
+    season = request.GET.get('season', config.CURRENT_SEASON)
 
     if userName:
-        obj = RatingData.objects.filter(userName=userName).order_by('created_at')
+        obj = RatingData.objects.filter(userName=userName, season=season).order_by('created_at')
         for r in obj:
             solo = r.solo
             duo = r.duo
