@@ -50,6 +50,7 @@ def getUserRating(request):
     data = []
     userName = request.GET.get('userName', False)
     season = request.GET.get('season', config.CURRENT_SEASON)
+
     if userName:
         obj = RatingData.objects.filter(userName=userName, season=season).order_by('-created_at')
         for r in obj:
@@ -72,7 +73,7 @@ def getUserRating(request):
             })
         data = json.dumps(data, indent=4)
         print("Get - '" + userName + "' rating data")
-        # print(data)
+        print(data)
     else:
         print("error - User not found")
     return HttpResponse(data, content_type = "application/json")

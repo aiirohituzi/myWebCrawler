@@ -2,7 +2,7 @@
 <div id="UserRating">
     <div class="container">
         <h1>{{ userName }} 의 전체 레이팅 <button class="btn btn-default btn-xs" @click="detail()">상세보기</button></h1>
-        <div class=" col-md-4 col-md-offset-8">
+        <div class="col-md-4 col-md-offset-8">
             <div class="panel panel-default">
                 <div class="panel-heading">최근 K / D 수치</div>
                 <table class="table table-condensed">
@@ -44,6 +44,11 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div class="pull-left">
+            <button class="btn btn-default" @click="moreReset();fetchRatings('시즌 3')">시즌 3</button>
+            <button class="btn btn-default" @click="moreReset();fetchRatings('시즌 4')">시즌 4</button>
+            <button class="btn btn-default" @click="moreReset();fetchRatings('시즌 5')">시즌 5</button>
         </div>
         <table class="table table-hover">
             <thead>
@@ -114,8 +119,8 @@ export default {
         }
     },
     methods: {
-        fetchRatings: function () {
-            axios.get('http://localhost:8000/userRating/?userName=' + this.$route.params.userName).then((response) => {
+        fetchRatings: function (season) {
+            axios.get('http://localhost:8000/userRating/?userName=' + this.$route.params.userName + '&season=' + season).then((response) => {
                 this.u_ratings = response.data
                 // console.log(this.u_ratings)
                 this.length = response.data.length
@@ -127,6 +132,11 @@ export default {
             }, (error) => {
                 console.log(error)
             })
+        },
+        moreReset: function() {
+            this.length = 1
+            this.max = 10
+            this.more = true
         },
         moreData: function () {
             if(this.max+10 <= this.length) {
