@@ -44,7 +44,7 @@ export default Line.extend({
   },
   methods: {
     fetchRatings: function () {
-      axios.get('http://localhost:8000/userRatingChart/?userName=' + this.$route.params.userName).then((response) => {
+      axios.get('http://localhost:8000/userRatingChart/?userName=' + this.$route.params.userName + '&season=' + this.$route.params.season).then((response) => {
         for(var i=0; i<response.data.length; i++){
           this.datacollection.labels.push(response.data[i].Update_time)
           this.datacollection.datasets[0].data.push(response.data[i].SOLO)

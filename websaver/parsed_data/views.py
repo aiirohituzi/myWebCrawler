@@ -51,6 +51,11 @@ def getUserRating(request):
     userName = request.GET.get('userName', False)
     season = request.GET.get('season', config.CURRENT_SEASON)
 
+    if season == 'undefined':
+        season = config.CURRENT_SEASON
+
+    print(season)
+
     if userName:
         obj = RatingData.objects.filter(userName=userName, season=season).order_by('-created_at')
         for r in obj:
@@ -287,6 +292,9 @@ def getUserRatingChart(request):
     data = []
     userName = request.GET.get('userName', False)
     season = request.GET.get('season', config.CURRENT_SEASON)
+
+    if season == 'undefined':
+        season = config.CURRENT_SEASON
 
     if userName:
         obj = RatingData.objects.filter(userName=userName, season=season).order_by('created_at')

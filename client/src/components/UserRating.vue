@@ -46,9 +46,9 @@
             </div>
         </div>
         <div class="pull-left">
-            <button class="btn btn-default" @click="moreReset();fetchRatings('시즌 3')">시즌 3</button>
-            <button class="btn btn-default" @click="moreReset();fetchRatings('시즌 4')">시즌 4</button>
-            <button class="btn btn-default" @click="moreReset();fetchRatings('시즌 5')">시즌 5</button>
+            <button class="btn btn-default" @click="seasonChange('시즌 3')">시즌 3</button>
+            <button class="btn btn-default" @click="seasonChange('시즌 4')">시즌 4</button>
+            <button class="btn btn-default" @click="seasonChange('시즌 5')">시즌 5</button>
         </div>
         <table class="table table-hover">
             <thead>
@@ -133,10 +133,13 @@ export default {
                 console.log(error)
             })
         },
-        moreReset: function() {
+        seasonChange: function(season) {
+            this.$router.push({name:'UserRating', params:{userName:this.userName, season:season}})
             this.length = 1
             this.max = 10
             this.more = true
+            console.log(this.$route.params.season)
+            this.fetchRatings(season)
         },
         moreData: function () {
             if(this.max+10 <= this.length) {

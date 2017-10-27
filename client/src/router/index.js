@@ -29,7 +29,7 @@ export default new VueRouter({
       component: RecentRating
     },
     {
-      path: '/UserRating/:userName',
+      path: '/UserRating/:userName/season/:season',
       name: 'UserRating',
       components: {
         default: UserRating,
