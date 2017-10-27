@@ -119,8 +119,8 @@ export default {
         }
     },
     methods: {
-        fetchRatings: function (season) {
-            axios.get('http://localhost:8000/userRating/?userName=' + this.$route.params.userName + '&season=' + season).then((response) => {
+        fetchRatings: function () {
+            axios.get('http://localhost:8000/userRating/?userName=' + this.$route.params.userName + '&season=' + this.$route.params.season).then((response) => {
                 this.u_ratings = response.data
                 // console.log(this.u_ratings)
                 this.length = response.data.length
@@ -138,8 +138,9 @@ export default {
             this.length = 1
             this.max = 10
             this.more = true
-            console.log(this.$route.params.season)
-            this.fetchRatings(season)
+            // console.log(this.$route.params.season)
+            // this.fetchRatings(this.$route.params.season)
+            location.reload()
         },
         moreData: function () {
             if(this.max+10 <= this.length) {
