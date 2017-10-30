@@ -86,8 +86,14 @@ def getUserRating(request):
 
 def getSoloRanking(request):
     data = []
+
+    season = request.GET.get('season', config.CURRENT_SEASON)
+
+    if season == 'undefined':
+        season = config.CURRENT_SEASON
+        
     for user in config.USER_LIST:
-        r = RatingData.objects.filter(userName=user).order_by('-created_at')
+        r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
         solo = r[0].solo
         duo = r[0].duo
         squad = r[0].squad
@@ -120,8 +126,14 @@ def getSoloRanking(request):
 
 def getDuoRanking(request):
     data = []
+    
+    season = request.GET.get('season', config.CURRENT_SEASON)
+
+    if season == 'undefined':
+        season = config.CURRENT_SEASON
+        
     for user in config.USER_LIST:
-        r = RatingData.objects.filter(userName=user).order_by('-created_at')
+        r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
         solo = r[0].solo
         duo = r[0].duo
         squad = r[0].squad
@@ -154,8 +166,14 @@ def getDuoRanking(request):
 
 def getSquadRanking(request):
     data = []
+    
+    season = request.GET.get('season', config.CURRENT_SEASON)
+
+    if season == 'undefined':
+        season = config.CURRENT_SEASON
+        
     for user in config.USER_LIST:
-        r = RatingData.objects.filter(userName=user).order_by('-created_at')
+        r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
         solo = r[0].solo
         duo = r[0].duo
         squad = r[0].squad
@@ -188,8 +206,14 @@ def getSquadRanking(request):
 
 def getSolofppRanking(request):
     data = []
+    
+    season = request.GET.get('season', config.CURRENT_SEASON)
+
+    if season == 'undefined':
+        season = config.CURRENT_SEASON
+        
     for user in config.USER_LIST:
-        r = RatingData.objects.filter(userName=user).order_by('-created_at')
+        r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
         solofpp = r[0].solofpp
         duofpp = r[0].duofpp
         squadfpp = r[0].squadfpp
@@ -222,8 +246,14 @@ def getSolofppRanking(request):
 
 def getDuofppRanking(request):
     data = []
+    
+    season = request.GET.get('season', config.CURRENT_SEASON)
+
+    if season == 'undefined':
+        season = config.CURRENT_SEASON
+        
     for user in config.USER_LIST:
-        r = RatingData.objects.filter(userName=user).order_by('-created_at')
+        r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
         solofpp = r[0].solofpp
         duofpp = r[0].duofpp
         squadfpp = r[0].squadfpp
@@ -256,8 +286,14 @@ def getDuofppRanking(request):
 
 def getSquadfppRanking(request):
     data = []
+    
+    season = request.GET.get('season', config.CURRENT_SEASON)
+
+    if season == 'undefined':
+        season = config.CURRENT_SEASON
+        
     for user in config.USER_LIST:
-        r = RatingData.objects.filter(userName=user).order_by('-created_at')
+        r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
         solofpp = r[0].solofpp
         duofpp = r[0].duofpp
         squadfpp = r[0].squadfpp
