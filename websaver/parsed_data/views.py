@@ -89,11 +89,15 @@ def getSoloRanking(request):
 
     season = request.GET.get('season', config.CURRENT_SEASON)
 
+    print(season)
+
     if season == 'undefined':
         season = config.CURRENT_SEASON
         
     for user in config.USER_LIST:
         r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
+        print(r)
+        print('===================================================')
         solo = r[0].solo
         duo = r[0].duo
         squad = r[0].squad
@@ -240,7 +244,7 @@ def getSolofppRanking(request):
     sorted_data = sorted(data, key=operator.itemgetter('SOLOFPP'), reverse=True)
     sorted_data = json.dumps(sorted_data, indent=4)
     print("Get - solo-fpp ranking data")
-    # print(sorted_data)
+    print(sorted_data)
     return HttpResponse(sorted_data, content_type = "application/json")
 
 
@@ -248,6 +252,8 @@ def getDuofppRanking(request):
     data = []
     
     season = request.GET.get('season', config.CURRENT_SEASON)
+
+    print(season)
 
     if season == 'undefined':
         season = config.CURRENT_SEASON

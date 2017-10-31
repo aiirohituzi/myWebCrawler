@@ -1,5 +1,11 @@
 <template>
 <div id="Ranking" class="container">
+    <div class="pull-left">
+        <button class="btn btn-default" @click="seasonChange('시즌 3')">시즌 3</button>
+        <button class="btn btn-default" @click="seasonChange('시즌 4')">시즌 4</button>
+        <button class="btn btn-default" @click="seasonChange('시즌 5')">시즌 5</button>
+    </div>
+    <br>
     <h1>3인칭 랭킹</h1>
     <hr>
     <div class="row">
@@ -157,6 +163,7 @@ export default {
     name: 'Ranking',
     data () {
         return {
+            season: undefined,
             s_ratings: [],
             d_ratings: [],
             q_ratings: [],
@@ -170,21 +177,21 @@ export default {
             this.$router.push({name:'UserRating', params:{userName:userName}})
         },
         fetchRatings: function () {
-            axios.get('http://localhost:8000/soloRanking/').then((response) => {
+            axios.get('http://localhost:8000/soloRanking/?season=' + this.season).then((response) => {
                 this.s_ratings = response.data
                 // console.log(response)
             }, (error) => {
                 console.log(error)
             })
             
-            axios.get('http://localhost:8000/duoRanking/').then((response) => {
+            axios.get('http://localhost:8000/duoRanking/?season=' + this.season).then((response) => {
                 this.d_ratings = response.data
                 // console.log(response)
             }, (error) => {
                 console.log(error)
             })
 
-            axios.get('http://localhost:8000/squadRanking/').then((response) => {
+            axios.get('http://localhost:8000/squadRanking/?season=' + this.season).then((response) => {
                 this.q_ratings = response.data
                 // console.log(response)
             }, (error) => {
@@ -192,27 +199,31 @@ export default {
             })
 
 
-            axios.get('http://localhost:8000/solofppRanking/').then((response) => {
+            axios.get('http://localhost:8000/solofppRanking/?season=' + this.season).then((response) => {
                 this.sf_ratings = response.data
                 // console.log(response)
             }, (error) => {
                 console.log(error)
             })
             
-            axios.get('http://localhost:8000/duofppRanking/').then((response) => {
+            axios.get('http://localhost:8000/duofppRanking/?season=' + this.season).then((response) => {
                 this.df_ratings = response.data
                 // console.log(response)
             }, (error) => {
                 console.log(error)
             })
 
-            axios.get('http://localhost:8000/squadfppRanking/').then((response) => {
+            axios.get('http://localhost:8000/squadfppRanking/?season=' + this.season).then((response) => {
                 this.qf_ratings = response.data
                 // console.log(response)
             }, (error) => {
                 console.log(error)
             })
-        }
+        },
+        seasonChange: function(season) {
+            this.season = season
+            this.fetchRatings()
+        },
     },
     mounted: function () {
         this.fetchRatings()
