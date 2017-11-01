@@ -54,8 +54,6 @@ def getUserRating(request):
     if season == 'undefined':
         season = config.CURRENT_SEASON
 
-    print(season)
-
     if userName:
         obj = RatingData.objects.filter(userName=userName, season=season).order_by('-created_at')
         for r in obj:
@@ -89,6 +87,7 @@ def getSoloRanking(request):
 
     season = request.GET.get('season', config.CURRENT_SEASON)
 
+    print('---------------------------')
     print(season)
 
     if season == 'undefined':
@@ -98,6 +97,10 @@ def getSoloRanking(request):
         r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
         print(r)
         print('===================================================')
+        if not r:
+            print('continue')
+            continue
+        print('not continue')
         solo = r[0].solo
         duo = r[0].duo
         squad = r[0].squad
@@ -138,6 +141,8 @@ def getDuoRanking(request):
         
     for user in config.USER_LIST:
         r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
+        if not r:
+            continue
         solo = r[0].solo
         duo = r[0].duo
         squad = r[0].squad
@@ -178,6 +183,8 @@ def getSquadRanking(request):
         
     for user in config.USER_LIST:
         r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
+        if not r:
+            continue
         solo = r[0].solo
         duo = r[0].duo
         squad = r[0].squad
@@ -218,6 +225,8 @@ def getSolofppRanking(request):
         
     for user in config.USER_LIST:
         r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
+        if not r:
+            continue
         solofpp = r[0].solofpp
         duofpp = r[0].duofpp
         squadfpp = r[0].squadfpp
@@ -253,13 +262,13 @@ def getDuofppRanking(request):
     
     season = request.GET.get('season', config.CURRENT_SEASON)
 
-    print(season)
-
     if season == 'undefined':
         season = config.CURRENT_SEASON
         
     for user in config.USER_LIST:
         r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
+        if not r:
+            continue
         solofpp = r[0].solofpp
         duofpp = r[0].duofpp
         squadfpp = r[0].squadfpp
@@ -300,6 +309,8 @@ def getSquadfppRanking(request):
         
     for user in config.USER_LIST:
         r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
+        if not r:
+            continue
         solofpp = r[0].solofpp
         duofpp = r[0].duofpp
         squadfpp = r[0].squadfpp
