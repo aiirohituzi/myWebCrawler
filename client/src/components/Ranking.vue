@@ -1,9 +1,14 @@
 <template>
 <div id="Ranking" class="container">
     <div class="pull-left">
-        <button class="btn btn-default" @click="seasonChange('시즌 3')">시즌 3</button>
-        <button class="btn btn-default" @click="seasonChange('시즌 4')">시즌 4</button>
-        <button class="btn btn-default" @click="seasonChange('시즌 5')">시즌 5</button>
+        <button v-if="this.season != '시즌 3'" class="btn btn-default" @click="seasonChange('시즌 3')">시즌 3</button>
+        <button v-else class="btn btn-primary" @click="seasonChange('시즌 3')">시즌 3</button>
+
+        <button v-if="this.season != '시즌 4'" class="btn btn-default" @click="seasonChange('시즌 4')">시즌 4</button>
+        <button v-else class="btn btn-primary" @click="seasonChange('시즌 4')">시즌 4</button>
+
+        <button v-if="(this.season != '시즌 5') && (this.season != undefined)" class="btn btn-default" @click="seasonChange('시즌 5')">시즌 5</button>
+        <button v-else class="btn btn-primary" @click="seasonChange('시즌 5')">시즌 5</button>
     </div>
     <br>
     <h1>3인칭 랭킹</h1>

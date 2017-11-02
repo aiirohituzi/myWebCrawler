@@ -45,10 +45,15 @@
                 </table>
             </div>
         </div>
-        <div class="pull-left">
-            <button class="btn btn-default" @click="seasonChange('시즌 3')">시즌 3</button>
-            <button class="btn btn-default" @click="seasonChange('시즌 4')">시즌 4</button>
-            <button class="btn btn-default" @click="seasonChange('시즌 5')">시즌 5</button>
+        <div class="pull-left">            
+            <button v-if="this.$route.params.season != '시즌 3'" class="btn btn-default" @click="seasonChange('시즌 3')">시즌 3</button>
+            <button v-else class="btn btn-primary" @click="seasonChange('시즌 3')">시즌 3</button>
+
+            <button v-if="this.$route.params.season != '시즌 4'" class="btn btn-default" @click="seasonChange('시즌 4')">시즌 4</button>
+            <button v-else class="btn btn-primary" @click="seasonChange('시즌 4')">시즌 4</button>
+
+            <button v-if="(this.$route.params.season != '시즌 5') && (this.$route.params.season != undefined)" class="btn btn-default" @click="seasonChange('시즌 5')">시즌 5</button>
+            <button v-else class="btn btn-primary" @click="seasonChange('시즌 5')">시즌 5</button>
         </div>
         <table class="table table-hover">
             <thead>
