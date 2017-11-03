@@ -16,7 +16,7 @@
             </thead>
             <tbody>
                 <tr v-for="rating in r_ratings" @click="userRating(rating.USER)">
-                    <td>{{ rating.USER }}</td>
+                    <td>{{ rating.USER }} <span class="label label-info">{{rating.season}}</span></td>
                     <td>{{ rating.SOLO }}</td>
                     <td>{{ rating.DUO }}</td>
                     <td>{{ rating.SQUAD }}</td>

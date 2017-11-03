@@ -20,6 +20,7 @@ def getRating(request):
             'DUOFPP': r.duofpp,
             'SQUADFPP': r.squadfpp,
             'Update_time': datetime.datetime.strftime(r.created_at, "%Y-%m-%d %H:%M:%S"),
+            'season': r.season,
         })
     data = json.dumps(data, indent=4)
     print("Get - rating data")
@@ -40,6 +41,7 @@ def getRecentRating(request):
             'DUOFPP': r[0].duofpp,
             'SQUADFPP': r[0].squadfpp,
             'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
+            'season': r[0].season,
         })
     data = json.dumps(data, indent=4)
     print("Get - recent rating data")

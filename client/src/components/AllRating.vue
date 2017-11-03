@@ -18,13 +18,14 @@
 
             <tbody v-if="length==1" @click="userRating(ratings[0].USER)">
                 <tr>
+                    <td>{{ ratings[0].USER }}</td>
                     <td>{{ ratings[0].SOLO }}</td>
                     <td>{{ ratings[0].DUO }}</td>
                     <td>{{ ratings[0].SQUAD }}</td>
                     <td>{{ ratings[0].SOLOFPP }}</td>
                     <td>{{ ratings[0].DUOFPP }}</td>
                     <td>{{ ratings[0].SQUADFPP }}</td>
-                    <td>{{ ratings[0].Update_time }}</td>
+                    <td><span class="label label-info">{{ratings[0].season}}</span> {{ ratings[0].Update_time }}</td>
                 </tr>
             </tbody>
 
@@ -37,7 +38,7 @@
                     <td>{{ ratings[n-1].SOLOFPP }}</td>
                     <td>{{ ratings[n-1].DUOFPP }}</td>
                     <td>{{ ratings[n-1].SQUADFPP }}</td>
-                    <td>{{ ratings[n-1].Update_time }}</td>
+                    <td><span class="label label-info">{{ratings[n-1].season}}</span> {{ ratings[n-1].Update_time }}</td>
                 </tr>
             </tbody>
         </table>
