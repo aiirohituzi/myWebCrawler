@@ -32,7 +32,6 @@ CRAWLER_TIME = 600
 SEASON = config.CURRENT_SEASON
 
 class Paser:
-    SAVE_COUNT = 0
 
     def __init__(self, count):
         self.SAVE_COUNT = count
@@ -143,7 +142,6 @@ class Paser:
     def dbSave(self):
         rating_data = self.parse_rating()
         print(rating_data)
-        # if self.SAVE_COUNT > 5:
         for arr in rating_data:
             for user, rating in arr.items():
                 print(user)
@@ -167,9 +165,7 @@ class Paser:
                     squadfppkd=rating.get('squadfppkd'),
                     season=SEASON
                 ).save()
-            # self.SAVE_COUNT = 0
-        # self.SAVE_COUNT += 1
-        # threading.Timer(CRAWLER_TIME + random.randrange(1,5), self.dbSave).start()
+        threading.Timer(CRAWLER_TIME + random.randrange(1,5), self.dbSave).start()
 
 if __name__=='__main__':
     p = Paser(0)
