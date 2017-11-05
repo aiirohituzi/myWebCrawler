@@ -10,6 +10,7 @@
         <button v-if="(this.season != '시즌 5') && (this.season != undefined)" class="btn btn-default" @click="seasonChange('시즌 5')">시즌 5</button>
         <button v-else class="btn btn-primary" @click="seasonChange('시즌 5')">시즌 5</button>
     </div>
+    <button class="btn btn-primary" @click="Test()">Test</button>
     <br>
     <h1>3인칭 랭킹</h1>
     <hr>
@@ -169,6 +170,7 @@ export default {
     data () {
         return {
             season: undefined,
+            TPP_ratings: [],
             s_ratings: [],
             d_ratings: [],
             q_ratings: [],
@@ -182,6 +184,13 @@ export default {
             this.$router.push({name:'UserRating', params:{userName:userName}})
         },
         fetchRatings: function () {
+            axios.get('http://localhost:8000/TPPRanking/?season=' + this.season).then((response) => {
+                this.TPP_ratings = response.data
+                console.log(response)
+            }, (error) => {
+                console.log(error)
+            })
+
             axios.get('http://localhost:8000/soloRanking/?season=' + this.season).then((response) => {
                 this.s_ratings = response.data
                 // console.log(response)
@@ -229,6 +238,16 @@ export default {
             this.season = season
             this.fetchRatings()
         },
+        Test: function() {
+            var sortData = []
+            for(var i=0; i<this.s_ratings.length; i++){
+                sortData.push(this.s_ratings[i])
+            }
+            sortData.sort(function (a,b){
+                return(a.DUO > b.DUO) ? -1 : (a.DUO < b.DUO) ? 1 : 0
+            })
+            console.log(sortData)
+        }
     },
     mounted: function () {
         this.fetchRatings()

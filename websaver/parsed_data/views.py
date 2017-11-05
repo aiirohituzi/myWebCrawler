@@ -84,25 +84,49 @@ def getUserRating(request):
     return HttpResponse(data, content_type = "application/json")
 
 
-def getSoloRanking(request):
+
+
+
+def getTPPRanking(request):
     data = []
 
     season = request.GET.get('season', config.CURRENT_SEASON)
-
-    print('---------------------------')
-    print(season)
 
     if season == 'undefined':
         season = config.CURRENT_SEASON
         
     for user in config.USER_LIST:
         r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
-        print(r)
-        print('===================================================')
         if not r:
-            print('continue')
             continue
-        print('not continue')
+        data.append({
+            'id': r[0].id,
+            'USER': r[0].userName,
+            'SOLO': r[0].solo,
+            'DUO': r[0].duo,
+            'SQUAD': r[0].squad,
+            'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
+        })
+    data = json.dumps(data, indent=4)
+    print("Get - solo ranking data")
+    print(data)
+    return HttpResponse(data, content_type = "application/json")
+
+
+
+
+def getSoloRanking(request):
+    data = []
+
+    season = request.GET.get('season', config.CURRENT_SEASON)
+
+    if season == 'undefined':
+        season = config.CURRENT_SEASON
+        
+    for user in config.USER_LIST:
+        r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
+        if not r:
+            continue
         solo = r[0].solo
         duo = r[0].duo
         squad = r[0].squad

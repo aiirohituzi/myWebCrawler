@@ -19,6 +19,8 @@ from parsed_data.views import getRating
 from parsed_data.views import getRecentRating
 from parsed_data.views import getUserRating
 
+from parsed_data.views import getTPPRanking
+
 from parsed_data.views import getSoloRanking
 from parsed_data.views import getDuoRanking
 from parsed_data.views import getSquadRanking
@@ -35,6 +37,7 @@ urlpatterns = [
     url(r'^rating/$', getRating, name='getRating'),
     url(r'^recentRating/$', getRecentRating, name='getRecentRating'),
     url(r'^userRating/$', getUserRating, name='getUserRating'),
+    url(r'^TPPRanking/$', getTPPRanking, name='getTPPRanking'),
     url(r'^soloRanking/$', getSoloRanking, name='getSoloRanking'),
     url(r'^duoRanking/$', getDuoRanking, name='getDuoRanking'),
     url(r'^squadRanking/$', getSquadRanking, name='getSquadRanking'),
