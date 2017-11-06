@@ -186,31 +186,48 @@ export default {
         fetchRatings: function () {
             axios.get('http://localhost:8000/TPPRanking/?season=' + this.season).then((response) => {
                 this.TPP_ratings = response.data
-                console.log(response)
+                // console.log(response)
+                this.s_ratings = []
+                this.d_ratings = []
+                this.q_ratings = []
+                for(var i=0; i<this.TPP_ratings.length; i++){
+                    this.s_ratings.push(this.TPP_ratings[i])
+                    this.d_ratings.push(this.TPP_ratings[i])
+                    this.q_ratings.push(this.TPP_ratings[i])
+                }
+                this.s_ratings.sort(function (a,b){
+                    return(a.SOLO > b.SOLO) ? -1 : (a.SOLO < b.SOLO) ? 1 : 0
+                })
+                this.d_ratings.sort(function (a,b){
+                    return(a.DUO > b.DUO) ? -1 : (a.DUO < b.DUO) ? 1 : 0
+                })
+                this.q_ratings.sort(function (a,b){
+                    return(a.SQUAD > b.SQUAD) ? -1 : (a.SQUAD < b.SQUAD) ? 1 : 0
+                })
             }, (error) => {
                 console.log(error)
             })
 
-            axios.get('http://localhost:8000/soloRanking/?season=' + this.season).then((response) => {
-                this.s_ratings = response.data
-                // console.log(response)
-            }, (error) => {
-                console.log(error)
-            })
+            // axios.get('http://localhost:8000/soloRanking/?season=' + this.season).then((response) => {
+            //     this.s_ratings = response.data
+            //     // console.log(response)
+            // }, (error) => {
+            //     console.log(error)
+            // })
             
-            axios.get('http://localhost:8000/duoRanking/?season=' + this.season).then((response) => {
-                this.d_ratings = response.data
-                // console.log(response)
-            }, (error) => {
-                console.log(error)
-            })
+            // axios.get('http://localhost:8000/duoRanking/?season=' + this.season).then((response) => {
+            //     this.d_ratings = response.data
+            //     // console.log(response)
+            // }, (error) => {
+            //     console.log(error)
+            // })
 
-            axios.get('http://localhost:8000/squadRanking/?season=' + this.season).then((response) => {
-                this.q_ratings = response.data
-                // console.log(response)
-            }, (error) => {
-                console.log(error)
-            })
+            // axios.get('http://localhost:8000/squadRanking/?season=' + this.season).then((response) => {
+            //     this.q_ratings = response.data
+            //     // console.log(response)
+            // }, (error) => {
+            //     console.log(error)
+            // })
 
 
             axios.get('http://localhost:8000/solofppRanking/?season=' + this.season).then((response) => {

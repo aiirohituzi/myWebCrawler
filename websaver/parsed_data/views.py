@@ -99,6 +99,14 @@ def getTPPRanking(request):
         r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
         if not r:
             continue
+
+        if r[0].solo == None:
+            r[0].solo = '0'
+        if r[0].duo == None:
+            r[0].duo = '0'
+        if r[0].squad == None:
+            r[0].squad = '0'
+
         data.append({
             'id': r[0].id,
             'USER': r[0].userName,
@@ -279,7 +287,7 @@ def getSolofppRanking(request):
     sorted_data = sorted(data, key=operator.itemgetter('SOLOFPP'), reverse=True)
     sorted_data = json.dumps(sorted_data, indent=4)
     print("Get - solo-fpp ranking data")
-    print(sorted_data)
+    # print(sorted_data)
     return HttpResponse(sorted_data, content_type = "application/json")
 
 
