@@ -174,6 +174,7 @@ export default {
             s_ratings: [],
             d_ratings: [],
             q_ratings: [],
+            FPP_ratings: [],
             sf_ratings: [],
             df_ratings: [],
             qf_ratings: []
@@ -230,26 +231,51 @@ export default {
             // })
 
 
-            axios.get('http://localhost:8000/solofppRanking/?season=' + this.season).then((response) => {
-                this.sf_ratings = response.data
+
+            axios.get('http://localhost:8000/FPPRanking/?season=' + this.season).then((response) => {
+                this.FPP_ratings = response.data
                 // console.log(response)
-            }, (error) => {
-                console.log(error)
-            })
-            
-            axios.get('http://localhost:8000/duofppRanking/?season=' + this.season).then((response) => {
-                this.df_ratings = response.data
-                // console.log(response)
+                this.sf_ratings = []
+                this.df_ratings = []
+                this.qf_ratings = []
+                for(var i=0; i<this.FPP_ratings.length; i++){
+                    this.sf_ratings.push(this.FPP_ratings[i])
+                    this.df_ratings.push(this.FPP_ratings[i])
+                    this.qf_ratings.push(this.FPP_ratings[i])
+                }
+                this.sf_ratings.sort(function (a,b){
+                    return(a.SOLOFPP > b.SOLOFPP) ? -1 : (a.SOLOFPP < b.SOLOFPP) ? 1 : 0
+                })
+                this.df_ratings.sort(function (a,b){
+                    return(a.DUOFPP > b.DUOFPP) ? -1 : (a.DUOFPP < b.DUOFPP) ? 1 : 0
+                })
+                this.qf_ratings.sort(function (a,b){
+                    return(a.SQUADFPP > b.SQUADFPP) ? -1 : (a.SQUADFPP < b.SQUADFPP) ? 1 : 0
+                })
             }, (error) => {
                 console.log(error)
             })
 
-            axios.get('http://localhost:8000/squadfppRanking/?season=' + this.season).then((response) => {
-                this.qf_ratings = response.data
-                // console.log(response)
-            }, (error) => {
-                console.log(error)
-            })
+            // axios.get('http://localhost:8000/solofppRanking/?season=' + this.season).then((response) => {
+            //     this.sf_ratings = response.data
+            //     // console.log(response)
+            // }, (error) => {
+            //     console.log(error)
+            // })
+            
+            // axios.get('http://localhost:8000/duofppRanking/?season=' + this.season).then((response) => {
+            //     this.df_ratings = response.data
+            //     // console.log(response)
+            // }, (error) => {
+            //     console.log(error)
+            // })
+
+            // axios.get('http://localhost:8000/squadfppRanking/?season=' + this.season).then((response) => {
+            //     this.qf_ratings = response.data
+            //     // console.log(response)
+            // }, (error) => {
+            //     console.log(error)
+            // })
         },
         seasonChange: function(season) {
             this.season = season

@@ -280,7 +280,7 @@ def getFPPRanking(request):
         })
     data = json.dumps(data, indent=4)
     print("Get - FPP ranking data")
-    print(data)
+    # print(data)
     return HttpResponse(data, content_type = "application/json")
 
 
