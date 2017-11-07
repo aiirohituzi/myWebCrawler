@@ -116,263 +116,301 @@ def getTPPRanking(request):
             'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
         })
     data = json.dumps(data, indent=4)
-    print("Get - solo ranking data")
+    print("Get - TPP ranking data")
+    # print(data)
+    return HttpResponse(data, content_type = "application/json")
+
+
+
+
+# def getSoloRanking(request):
+#     data = []
+
+#     season = request.GET.get('season', config.CURRENT_SEASON)
+
+#     if season == 'undefined':
+#         season = config.CURRENT_SEASON
+        
+#     for user in config.USER_LIST:
+#         r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
+#         if not r:
+#             continue
+#         solo = r[0].solo
+#         duo = r[0].duo
+#         squad = r[0].squad
+#         if r[0].solo != None:
+#             solo = int(solo.replace(',', ''))
+#         else:
+#             solo = 0
+#         if r[0].duo != None:
+#             duo = int(duo.replace(',', ''))
+#         else:
+#             duo = 0
+#         if r[0].squad != None:
+#             squad = int(squad.replace(',', ''))
+#         else:
+#             squad = 0
+#         data.append({
+#             'id': r[0].id,
+#             'USER': r[0].userName,
+#             'SOLO': solo,
+#             'DUO': duo,
+#             'SQUAD': squad,
+#             'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
+#         })
+#     sorted_data = sorted(data, key=operator.itemgetter('SOLO'), reverse=True)
+#     sorted_data = json.dumps(sorted_data, indent=4)
+#     print("Get - solo ranking data")
+#     # print(sorted_data)
+#     return HttpResponse(sorted_data, content_type = "application/json")
+
+
+# def getDuoRanking(request):
+#     data = []
+    
+#     season = request.GET.get('season', config.CURRENT_SEASON)
+
+#     if season == 'undefined':
+#         season = config.CURRENT_SEASON
+        
+#     for user in config.USER_LIST:
+#         r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
+#         if not r:
+#             continue
+#         solo = r[0].solo
+#         duo = r[0].duo
+#         squad = r[0].squad
+#         if r[0].solo != None:
+#             solo = int(solo.replace(',', ''))
+#         else:
+#             solo = 0
+#         if r[0].duo != None:
+#             duo = int(duo.replace(',', ''))
+#         else:
+#             duo = 0
+#         if r[0].squad != None:
+#             squad = int(squad.replace(',', ''))
+#         else:
+#             squad = 0
+#         data.append({
+#             'id': r[0].id,
+#             'USER': r[0].userName,
+#             'SOLO': solo,
+#             'DUO': duo,
+#             'SQUAD': squad,
+#             'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
+#         })
+#     sorted_data = sorted(data, key=operator.itemgetter('DUO'), reverse=True)
+#     sorted_data = json.dumps(sorted_data, indent=4)
+#     print("Get - duo ranking data")
+#     # print(sorted_data)
+#     return HttpResponse(sorted_data, content_type = "application/json")
+
+
+# def getSquadRanking(request):
+#     data = []
+    
+#     season = request.GET.get('season', config.CURRENT_SEASON)
+
+#     if season == 'undefined':
+#         season = config.CURRENT_SEASON
+        
+#     for user in config.USER_LIST:
+#         r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
+#         if not r:
+#             continue
+#         solo = r[0].solo
+#         duo = r[0].duo
+#         squad = r[0].squad
+#         if r[0].solo != None:
+#             solo = int(solo.replace(',', ''))
+#         else:
+#             solo = 0
+#         if r[0].duo != None:
+#             duo = int(duo.replace(',', ''))
+#         else:
+#             duo = 0
+#         if r[0].squad != None:
+#             squad = int(squad.replace(',', ''))
+#         else:
+#             squad = 0
+#         data.append({
+#             'id': r[0].id,
+#             'USER': r[0].userName,
+#             'SOLO': solo,
+#             'DUO': duo,
+#             'SQUAD': squad,
+#             'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
+#         })
+#     sorted_data = sorted(data, key=operator.itemgetter('SQUAD'), reverse=True)
+#     sorted_data = json.dumps(sorted_data, indent=4)
+#     print("Get - squad ranking data")
+#     # print(sorted_data)
+#     return HttpResponse(sorted_data, content_type = "application/json")
+
+
+
+def getFPPRanking(request):
+    data = []
+
+    season = request.GET.get('season', config.CURRENT_SEASON)
+
+    if season == 'undefined':
+        season = config.CURRENT_SEASON
+        
+    for user in config.USER_LIST:
+        r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
+        if not r:
+            continue
+
+        if r[0].solofpp == None:
+            r[0].solofpp = '0'
+        if r[0].duofpp == None:
+            r[0].duofpp = '0'
+        if r[0].squadfpp == None:
+            r[0].squadfpp = '0'
+
+        data.append({
+            'id': r[0].id,
+            'USER': r[0].userName,
+            'SOLOFPP': r[0].solofpp,
+            'DUOFPP': r[0].duofpp,
+            'SQUADFPP': r[0].squadfpp,
+            'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
+        })
+    data = json.dumps(data, indent=4)
+    print("Get - FPP ranking data")
     print(data)
     return HttpResponse(data, content_type = "application/json")
 
 
 
 
-def getSoloRanking(request):
-    data = []
 
-    season = request.GET.get('season', config.CURRENT_SEASON)
-
-    if season == 'undefined':
-        season = config.CURRENT_SEASON
-        
-    for user in config.USER_LIST:
-        r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
-        if not r:
-            continue
-        solo = r[0].solo
-        duo = r[0].duo
-        squad = r[0].squad
-        if r[0].solo != None:
-            solo = int(solo.replace(',', ''))
-        else:
-            solo = 0
-        if r[0].duo != None:
-            duo = int(duo.replace(',', ''))
-        else:
-            duo = 0
-        if r[0].squad != None:
-            squad = int(squad.replace(',', ''))
-        else:
-            squad = 0
-        data.append({
-            'id': r[0].id,
-            'USER': r[0].userName,
-            'SOLO': solo,
-            'DUO': duo,
-            'SQUAD': squad,
-            'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
-        })
-    sorted_data = sorted(data, key=operator.itemgetter('SOLO'), reverse=True)
-    sorted_data = json.dumps(sorted_data, indent=4)
-    print("Get - solo ranking data")
-    # print(sorted_data)
-    return HttpResponse(sorted_data, content_type = "application/json")
-
-
-def getDuoRanking(request):
-    data = []
+# def getSolofppRanking(request):
+#     data = []
     
-    season = request.GET.get('season', config.CURRENT_SEASON)
+#     season = request.GET.get('season', config.CURRENT_SEASON)
 
-    if season == 'undefined':
-        season = config.CURRENT_SEASON
+#     if season == 'undefined':
+#         season = config.CURRENT_SEASON
         
-    for user in config.USER_LIST:
-        r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
-        if not r:
-            continue
-        solo = r[0].solo
-        duo = r[0].duo
-        squad = r[0].squad
-        if r[0].solo != None:
-            solo = int(solo.replace(',', ''))
-        else:
-            solo = 0
-        if r[0].duo != None:
-            duo = int(duo.replace(',', ''))
-        else:
-            duo = 0
-        if r[0].squad != None:
-            squad = int(squad.replace(',', ''))
-        else:
-            squad = 0
-        data.append({
-            'id': r[0].id,
-            'USER': r[0].userName,
-            'SOLO': solo,
-            'DUO': duo,
-            'SQUAD': squad,
-            'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
-        })
-    sorted_data = sorted(data, key=operator.itemgetter('DUO'), reverse=True)
-    sorted_data = json.dumps(sorted_data, indent=4)
-    print("Get - duo ranking data")
-    # print(sorted_data)
-    return HttpResponse(sorted_data, content_type = "application/json")
+#     for user in config.USER_LIST:
+#         r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
+#         if not r:
+#             continue
+#         solofpp = r[0].solofpp
+#         duofpp = r[0].duofpp
+#         squadfpp = r[0].squadfpp
+#         if r[0].solofpp != None:
+#             solofpp = int(solofpp.replace(',', ''))
+#         else:
+#             solofpp = 0
+#         if r[0].duofpp != None:
+#             duofpp = int(duofpp.replace(',', ''))
+#         else:
+#             duofpp = 0
+#         if r[0].squadfpp != None:
+#             squadfpp = int(squadfpp.replace(',', ''))
+#         else:
+#             squadfpp = 0
+#         data.append({
+#             'id': r[0].id,
+#             'USER': r[0].userName,
+#             'SOLOFPP': solofpp,
+#             'DUOFPP': duofpp,
+#             'SQUADFPP': squadfpp,
+#             'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
+#         })
+#     sorted_data = sorted(data, key=operator.itemgetter('SOLOFPP'), reverse=True)
+#     sorted_data = json.dumps(sorted_data, indent=4)
+#     print("Get - solo-fpp ranking data")
+#     # print(sorted_data)
+#     return HttpResponse(sorted_data, content_type = "application/json")
 
 
-def getSquadRanking(request):
-    data = []
+# def getDuofppRanking(request):
+#     data = []
     
-    season = request.GET.get('season', config.CURRENT_SEASON)
+#     season = request.GET.get('season', config.CURRENT_SEASON)
 
-    if season == 'undefined':
-        season = config.CURRENT_SEASON
+#     if season == 'undefined':
+#         season = config.CURRENT_SEASON
         
-    for user in config.USER_LIST:
-        r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
-        if not r:
-            continue
-        solo = r[0].solo
-        duo = r[0].duo
-        squad = r[0].squad
-        if r[0].solo != None:
-            solo = int(solo.replace(',', ''))
-        else:
-            solo = 0
-        if r[0].duo != None:
-            duo = int(duo.replace(',', ''))
-        else:
-            duo = 0
-        if r[0].squad != None:
-            squad = int(squad.replace(',', ''))
-        else:
-            squad = 0
-        data.append({
-            'id': r[0].id,
-            'USER': r[0].userName,
-            'SOLO': solo,
-            'DUO': duo,
-            'SQUAD': squad,
-            'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
-        })
-    sorted_data = sorted(data, key=operator.itemgetter('SQUAD'), reverse=True)
-    sorted_data = json.dumps(sorted_data, indent=4)
-    print("Get - squad ranking data")
-    # print(sorted_data)
-    return HttpResponse(sorted_data, content_type = "application/json")
+#     for user in config.USER_LIST:
+#         r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
+#         if not r:
+#             continue
+#         solofpp = r[0].solofpp
+#         duofpp = r[0].duofpp
+#         squadfpp = r[0].squadfpp
+#         if r[0].solofpp != None:
+#             solofpp = int(solofpp.replace(',', ''))
+#         else:
+#             solofpp = 0
+#         if r[0].duofpp != None:
+#             duofpp = int(duofpp.replace(',', ''))
+#         else:
+#             duofpp = 0
+#         if r[0].squadfpp != None:
+#             squadfpp = int(squadfpp.replace(',', ''))
+#         else:
+#             squadfpp = 0
+#         data.append({
+#             'id': r[0].id,
+#             'USER': r[0].userName,
+#             'SOLOFPP': solofpp,
+#             'DUOFPP': duofpp,
+#             'SQUADFPP': squadfpp,
+#             'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
+#         })
+#     sorted_data = sorted(data, key=operator.itemgetter('DUOFPP'), reverse=True)
+#     sorted_data = json.dumps(sorted_data, indent=4)
+#     print("Get - duo-fpp ranking data")
+#     # print(sorted_data)
+#     return HttpResponse(sorted_data, content_type = "application/json")
 
 
-def getSolofppRanking(request):
-    data = []
+# def getSquadfppRanking(request):
+#     data = []
     
-    season = request.GET.get('season', config.CURRENT_SEASON)
+#     season = request.GET.get('season', config.CURRENT_SEASON)
 
-    if season == 'undefined':
-        season = config.CURRENT_SEASON
+#     if season == 'undefined':
+#         season = config.CURRENT_SEASON
         
-    for user in config.USER_LIST:
-        r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
-        if not r:
-            continue
-        solofpp = r[0].solofpp
-        duofpp = r[0].duofpp
-        squadfpp = r[0].squadfpp
-        if r[0].solofpp != None:
-            solofpp = int(solofpp.replace(',', ''))
-        else:
-            solofpp = 0
-        if r[0].duofpp != None:
-            duofpp = int(duofpp.replace(',', ''))
-        else:
-            duofpp = 0
-        if r[0].squadfpp != None:
-            squadfpp = int(squadfpp.replace(',', ''))
-        else:
-            squadfpp = 0
-        data.append({
-            'id': r[0].id,
-            'USER': r[0].userName,
-            'SOLOFPP': solofpp,
-            'DUOFPP': duofpp,
-            'SQUADFPP': squadfpp,
-            'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
-        })
-    sorted_data = sorted(data, key=operator.itemgetter('SOLOFPP'), reverse=True)
-    sorted_data = json.dumps(sorted_data, indent=4)
-    print("Get - solo-fpp ranking data")
-    # print(sorted_data)
-    return HttpResponse(sorted_data, content_type = "application/json")
-
-
-def getDuofppRanking(request):
-    data = []
-    
-    season = request.GET.get('season', config.CURRENT_SEASON)
-
-    if season == 'undefined':
-        season = config.CURRENT_SEASON
-        
-    for user in config.USER_LIST:
-        r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
-        if not r:
-            continue
-        solofpp = r[0].solofpp
-        duofpp = r[0].duofpp
-        squadfpp = r[0].squadfpp
-        if r[0].solofpp != None:
-            solofpp = int(solofpp.replace(',', ''))
-        else:
-            solofpp = 0
-        if r[0].duofpp != None:
-            duofpp = int(duofpp.replace(',', ''))
-        else:
-            duofpp = 0
-        if r[0].squadfpp != None:
-            squadfpp = int(squadfpp.replace(',', ''))
-        else:
-            squadfpp = 0
-        data.append({
-            'id': r[0].id,
-            'USER': r[0].userName,
-            'SOLOFPP': solofpp,
-            'DUOFPP': duofpp,
-            'SQUADFPP': squadfpp,
-            'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
-        })
-    sorted_data = sorted(data, key=operator.itemgetter('DUOFPP'), reverse=True)
-    sorted_data = json.dumps(sorted_data, indent=4)
-    print("Get - duo-fpp ranking data")
-    # print(sorted_data)
-    return HttpResponse(sorted_data, content_type = "application/json")
-
-
-def getSquadfppRanking(request):
-    data = []
-    
-    season = request.GET.get('season', config.CURRENT_SEASON)
-
-    if season == 'undefined':
-        season = config.CURRENT_SEASON
-        
-    for user in config.USER_LIST:
-        r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
-        if not r:
-            continue
-        solofpp = r[0].solofpp
-        duofpp = r[0].duofpp
-        squadfpp = r[0].squadfpp
-        if r[0].solofpp != None:
-            solofpp = int(solofpp.replace(',', ''))
-        else:
-            solofpp = 0
-        if r[0].duofpp != None:
-            duofpp = int(duofpp.replace(',', ''))
-        else:
-            duofpp = 0
-        if r[0].squadfpp != None:
-            squadfpp = int(squadfpp.replace(',', ''))
-        else:
-            squadfpp = 0
-        data.append({
-            'id': r[0].id,
-            'USER': r[0].userName,
-            'SOLOFPP': solofpp,
-            'DUOFPP': duofpp,
-            'SQUADFPP': squadfpp,
-            'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
-        })
-    sorted_data = sorted(data, key=operator.itemgetter('SQUADFPP'), reverse=True)
-    sorted_data = json.dumps(sorted_data, indent=4)
-    print("Get - squad-fpp ranking data")
-    # print(sorted_data)
-    return HttpResponse(sorted_data, content_type = "application/json")
+#     for user in config.USER_LIST:
+#         r = RatingData.objects.filter(userName=user, season=season).order_by('-created_at')
+#         if not r:
+#             continue
+#         solofpp = r[0].solofpp
+#         duofpp = r[0].duofpp
+#         squadfpp = r[0].squadfpp
+#         if r[0].solofpp != None:
+#             solofpp = int(solofpp.replace(',', ''))
+#         else:
+#             solofpp = 0
+#         if r[0].duofpp != None:
+#             duofpp = int(duofpp.replace(',', ''))
+#         else:
+#             duofpp = 0
+#         if r[0].squadfpp != None:
+#             squadfpp = int(squadfpp.replace(',', ''))
+#         else:
+#             squadfpp = 0
+#         data.append({
+#             'id': r[0].id,
+#             'USER': r[0].userName,
+#             'SOLOFPP': solofpp,
+#             'DUOFPP': duofpp,
+#             'SQUADFPP': squadfpp,
+#             'Update_time': datetime.datetime.strftime(r[0].created_at, "%Y-%m-%d %H:%M:%S"),
+#         })
+#     sorted_data = sorted(data, key=operator.itemgetter('SQUADFPP'), reverse=True)
+#     sorted_data = json.dumps(sorted_data, indent=4)
+#     print("Get - squad-fpp ranking data")
+#     # print(sorted_data)
+#     return HttpResponse(sorted_data, content_type = "application/json")
 
 
 def getUserRatingChart(request):
