@@ -5,44 +5,44 @@
         <div class="col-md-4 col-md-offset-8">
             <div class="panel panel-default">
                 <div class="panel-heading">최근 K / D 수치</div>
-                <table class="table table-condensed">
-                    <thead>
-                        <tr>
-                            <th>SOLO</th>
-                            <th>DUO</th>
-                            <th>SQUAD</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td v-if="u_ratings[0].SOLOKD != null">{{u_ratings[0].SOLOKD}}</td>
-                            <td v-else>-</td>
-                            <td v-if="u_ratings[0].DUOKD != null">{{u_ratings[0].DUOKD}}</td>
-                            <td v-else>-</td>
-                            <td v-if="u_ratings[0].SQUADKD != null">{{u_ratings[0].SQUADKD}}</td>
-                            <td v-else>-</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="table table-condensed">
-                    <thead>
-                        <tr>
-                            <th>SOLO-FPP</th>
-                            <th>DUO-FPP</th>
-                            <th>SQUAD-FPP</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td v-if="u_ratings[0].SOLOFPPKD != null">{{u_ratings[0].SOLOFPPKD}}</td>
-                            <td v-else>-</td>
-                            <td v-if="u_ratings[0].DUOFPPKD != null">{{u_ratings[0].DUOFPPKD}}</td>
-                            <td v-else>-</td>
-                            <td v-if="u_ratings[0].SQUADFPPKD != null">{{u_ratings[0].SQUADFPPKD}}</td>
-                            <td v-else>-</td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>SOLO</th>
+                                <th>DUO</th>
+                                <th>SQUAD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td v-if="u_ratings[0].SOLOKD != null">{{u_ratings[0].SOLOKD}}</td>
+                                <td v-else>-</td>
+                                <td v-if="u_ratings[0].DUOKD != null">{{u_ratings[0].DUOKD}}</td>
+                                <td v-else>-</td>
+                                <td v-if="u_ratings[0].SQUADKD != null">{{u_ratings[0].SQUADKD}}</td>
+                                <td v-else>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>SOLO-FPP</th>
+                                <th>DUO-FPP</th>
+                                <th>SQUAD-FPP</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td v-if="u_ratings[0].SOLOFPPKD != null">{{u_ratings[0].SOLOFPPKD}}</td>
+                                <td v-else>-</td>
+                                <td v-if="u_ratings[0].DUOFPPKD != null">{{u_ratings[0].DUOFPPKD}}</td>
+                                <td v-else>-</td>
+                                <td v-if="u_ratings[0].SQUADFPPKD != null">{{u_ratings[0].SQUADFPPKD}}</td>
+                                <td v-else>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
             </div>
         </div>
         <div class="pull-left">            
@@ -55,43 +55,45 @@
             <button v-if="(this.$route.params.season != '시즌 5') && (this.$route.params.season != undefined)" class="btn btn-default" @click="seasonChange('시즌 5')">시즌 5</button>
             <button v-else class="btn btn-primary" @click="seasonChange('시즌 5')">시즌 5</button>
         </div>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>SOLO</th>
-                    <th>DUO</th>
-                    <th>SQUAD</th>
-                    <th>SOLO-FPP</th>
-                    <th>DUO-FPP</th>
-                    <th>SQUAD-FPP</th>
-                    <th>Update time</th>
-                </tr>
-            </thead>
-            
-            <tbody v-if="length==1">
-                <tr>
-                    <td>{{ u_ratings[0].SOLO }}</td>
-                    <td>{{ u_ratings[0].DUO }}</td>
-                    <td>{{ u_ratings[0].SQUAD }}</td>
-                    <td>{{ u_ratings[0].SOLOFPP }}</td>
-                    <td>{{ u_ratings[0].DUOFPP }}</td>
-                    <td>{{ u_ratings[0].SQUADFPP }}</td>
-                    <td>{{ u_ratings[0].Update_time }}</td>
-                </tr>
-            </tbody>
+        <div class="container table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>SOLO</th>
+                        <th>DUO</th>
+                        <th>SQUAD</th>
+                        <th>SOLO-FPP</th>
+                        <th>DUO-FPP</th>
+                        <th>SQUAD-FPP</th>
+                        <th>Update time</th>
+                    </tr>
+                </thead>
+                
+                <tbody v-if="length==1">
+                    <tr>
+                        <td>{{ u_ratings[0].SOLO }}</td>
+                        <td>{{ u_ratings[0].DUO }}</td>
+                        <td>{{ u_ratings[0].SQUAD }}</td>
+                        <td>{{ u_ratings[0].SOLOFPP }}</td>
+                        <td>{{ u_ratings[0].DUOFPP }}</td>
+                        <td>{{ u_ratings[0].SQUADFPP }}</td>
+                        <td>{{ u_ratings[0].Update_time }}</td>
+                    </tr>
+                </tbody>
 
-            <tbody v-else>
-                <tr v-for="n in max">
-                    <td>{{ u_ratings[n-1].SOLO }}</td>
-                    <td>{{ u_ratings[n-1].DUO }}</td>
-                    <td>{{ u_ratings[n-1].SQUAD }}</td>
-                    <td>{{ u_ratings[n-1].SOLOFPP }}</td>
-                    <td>{{ u_ratings[n-1].DUOFPP }}</td>
-                    <td>{{ u_ratings[n-1].SQUADFPP }}</td>
-                    <td>{{ u_ratings[n-1].Update_time }}</td>
-                </tr>
-            </tbody>
-        </table>
+                <tbody v-else>
+                    <tr v-for="n in max">
+                        <td>{{ u_ratings[n-1].SOLO }}</td>
+                        <td>{{ u_ratings[n-1].DUO }}</td>
+                        <td>{{ u_ratings[n-1].SQUAD }}</td>
+                        <td>{{ u_ratings[n-1].SOLOFPP }}</td>
+                        <td>{{ u_ratings[n-1].DUOFPP }}</td>
+                        <td>{{ u_ratings[n-1].SQUADFPP }}</td>
+                        <td>{{ u_ratings[n-1].Update_time }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <button v-if="more" class="btn btn-primary btn-block" @click="moreData()">More</button>
         <button v-else class="btn btn-default btn-block" disabled="disabled">No more data...</button>
     </div>

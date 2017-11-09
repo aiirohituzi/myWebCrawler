@@ -14,7 +14,7 @@
     <h1>3인칭 랭킹</h1>
     <hr>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 table-responsive">
             <h3>SOLO RANKING</h3>
             <table class="table table-hover">
                 <thead>
@@ -37,7 +37,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 table-responsive">
             <h3>DUO RANKING</h3>
             <table class="table table-hover">
                 <thead>
@@ -60,7 +60,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12 table-responsive">
             <h3>SQUAD RANKING</h3>
             <table class="table table-hover">
                 <thead>
@@ -88,7 +88,7 @@
     <h1>1인칭 랭킹</h1>
     <hr>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 table-responsive">
             <h3>SOLO-FPP RANKING</h3>
             <table class="table table-hover">
                 <thead>
@@ -111,7 +111,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 table-responsive">
             <h3>DUO-FPP RANKING</h3>
             <table class="table table-hover">
                 <thead>
@@ -134,7 +134,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12 table-responsive">
             <h3>SQUAD-FPP RANKING</h3>
             <table class="table table-hover">
                 <thead>

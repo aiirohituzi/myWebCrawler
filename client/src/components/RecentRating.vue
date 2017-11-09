@@ -1,6 +1,6 @@
 <template>
 <div id="RecentRating">
-    <div class="container">
+    <div class="container table-responsive">
         <h1>최근 레이팅</h1>
         <table class="table table-hover">
             <thead>

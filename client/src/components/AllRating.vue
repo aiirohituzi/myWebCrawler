@@ -1,6 +1,6 @@
 <template>
 <div id="AllRating">
-    <div class="container">
+    <div class="container table-responsive">
         <h1>전체 레이팅 기록</h1>
         <table class="table table-hover">
             <thead>
