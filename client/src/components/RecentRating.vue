@@ -5,13 +5,13 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th @click="sorting('USER')">USER</th>
-                    <th @click="sorting('SOLO')">SOLO</th>
-                    <th @click="sorting('DUO')">DUO</th>
-                    <th @click="sorting('SQUAD')">SQUAD</th>
-                    <th @click="sorting('SOLOFPP')">SOLO-FPP</th>
-                    <th @click="sorting('DUOFPP')">DUO-FPP</th>
-                    <th @click="sorting('SQUADFPP')">SQUAD-FPP</th>
+                    <th @click="sorting('USER')">USER {{sort_header[0]}}</th>
+                    <th @click="sorting('SOLO')">SOLO {{sort_header[1]}}</th>
+                    <th @click="sorting('DUO')">DUO {{sort_header[2]}}</th>
+                    <th @click="sorting('SQUAD')">SQUAD {{sort_header[3]}}</th>
+                    <th @click="sorting('SOLOFPP')">SOLO-FPP {{sort_header[4]}}</th>
+                    <th @click="sorting('DUOFPP')">DUO-FPP {{sort_header[5]}}</th>
+                    <th @click="sorting('SQUADFPP')">SQUAD-FPP {{sort_header[6]}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,7 +37,10 @@ export default {
     name: 'RecentRating',
     data () {
         return {
-            r_ratings: []
+            r_ratings: [],
+            sort_header: [
+                '', '', '', '', '', '', ''
+            ]
         }
     },
     methods: {
@@ -54,39 +57,109 @@ export default {
         sorting: function (Sortby) {
             switch (Sortby) {
                 case "USER":
-                    this.r_ratings.sort(function (a,b){
-                        return(a.USER.toLowerCase() < b.USER.toLowerCase()) ? -1 : (a.USER.toLowerCase() > b.USER.toLowerCase()) ? 1 : 0
-                    })
+                    if(this.sort_header[0] != '▲'){
+                        this.r_ratings.sort(function (a,b){
+                            return(a.USER.toLowerCase() < b.USER.toLowerCase()) ? -1 : (a.USER.toLowerCase() > b.USER.toLowerCase()) ? 1 : 0
+                        })
+                        this.sort_header = ['', '', '', '', '', '', '']
+                        this.sort_header[0] = '▲'
+                    } else {
+                        this.r_ratings.sort(function (a,b){
+                            return(a.USER.toLowerCase() > b.USER.toLowerCase()) ? -1 : (a.USER.toLowerCase() < b.USER.toLowerCase()) ? 1 : 0
+                        })
+                        this.sort_header = ['', '', '', '', '', '', '']
+                        this.sort_header[0] = '▼'
+                    }
                     break;
                 case "SOLO":
-                    this.r_ratings.sort(function (a,b){
-                        return(a.SOLO > b.SOLO) ? -1 : (a.SOLO < b.SOLO) ? 1 : (a.SOLO == undefined) ? 1 : (b.SOLO == undefined) ? -1 : 0
-                    })
+                    if(this.sort_header[1] != '▼'){
+                        this.r_ratings.sort(function (a,b){
+                            return(a.SOLO > b.SOLO) ? -1 : (a.SOLO < b.SOLO) ? 1 : (a.SOLO == undefined) ? 1 : (b.SOLO == undefined) ? -1 : 0
+                        })
+                        this.sort_header = ['', '', '', '', '', '', '']
+                        this.sort_header[1] = '▼'
+                    } else {
+                        this.r_ratings.sort(function (a,b){
+                            return(a.SOLO < b.SOLO) ? -1 : (a.SOLO > b.SOLO) ? 1 : (a.SOLO == undefined) ? 1 : (b.SOLO == undefined) ? -1 : 0
+                        })
+                        this.sort_header = ['', '', '', '', '', '', '']
+                        this.sort_header[1] = '▲'
+                    }
                     break;
                 case "DUO":
-                    this.r_ratings.sort(function (a,b){
-                        return(a.DUO > b.DUO) ? -1 : (a.DUO < b.DUO) ? 1 : (a.DUO == undefined) ? 1 : (b.DUO == undefined) ? -1 : 0
-                    })
+                    if(this.sort_header[2] != '▼'){
+                        this.r_ratings.sort(function (a,b){
+                            return(a.DUO > b.DUO) ? -1 : (a.DUO < b.DUO) ? 1 : (a.DUO == undefined) ? 1 : (b.DUO == undefined) ? -1 : 0
+                        })
+                        this.sort_header = ['', '', '', '', '', '', '']
+                        this.sort_header[2] = '▼'
+                    } else {
+                        this.r_ratings.sort(function (a,b){
+                            return(a.DUO < b.DUO) ? -1 : (a.DUO > b.DUO) ? 1 : (a.DUO == undefined) ? 1 : (b.DUO == undefined) ? -1 : 0
+                        })
+                        this.sort_header = ['', '', '', '', '', '', '']
+                        this.sort_header[2] = '▲'
+                    }
                     break
                 case "SQUAD":
-                    this.r_ratings.sort(function (a,b){
-                        return(a.SQUAD > b.SQUAD) ? -1 : (a.SQUAD < b.SQUAD) ? 1 : (a.SQUAD == undefined) ? 1 : (b.SQUAD == undefined) ? -1 : 0
-                    })
+                    if(this.sort_header[3] != '▼'){
+                        this.r_ratings.sort(function (a,b){
+                            return(a.SQUAD > b.SQUAD) ? -1 : (a.SQUAD < b.SQUAD) ? 1 : (a.SQUAD == undefined) ? 1 : (b.SQUAD == undefined) ? -1 : 0
+                        })
+                        this.sort_header = ['', '', '', '', '', '', '']
+                        this.sort_header[3] = '▼'
+                    } else {
+                        this.r_ratings.sort(function (a,b){
+                            return(a.SQUAD < b.SQUAD) ? -1 : (a.SQUAD > b.SQUAD) ? 1 : (a.SQUAD == undefined) ? 1 : (b.SQUAD == undefined) ? -1 : 0
+                        })
+                        this.sort_header = ['', '', '', '', '', '', '']
+                        this.sort_header[3] = '▲'
+                    }
                     break
                 case "SOLOFPP":
-                    this.r_ratings.sort(function (a,b){
-                        return(a.SOLOFPP > b.SOLOFPP) ? -1 : (a.SOLOFPP < b.SOLOFPP) ? 1 : (a.SOLOFPP == undefined) ? 1 : (b.SOLOFPP == undefined) ? -1 : 0
-                    })
+                    if(this.sort_header[4] != '▼'){
+                        this.r_ratings.sort(function (a,b){
+                            return(a.SOLOFPP > b.SOLOFPP) ? -1 : (a.SOLOFPP < b.SOLOFPP) ? 1 : (a.SOLOFPP == undefined) ? 1 : (b.SOLOFPP == undefined) ? -1 : 0
+                        })
+                        this.sort_header = ['', '', '', '', '', '', '']
+                        this.sort_header[4] = '▼'
+                    } else {
+                        this.r_ratings.sort(function (a,b){
+                            return(a.SOLOFPP < b.SOLOFPP) ? -1 : (a.SOLOFPP > b.SOLOFPP) ? 1 : (a.SOLOFPP == undefined) ? 1 : (b.SOLOFPP == undefined) ? -1 : 0
+                        })
+                        this.sort_header = ['', '', '', '', '', '', '']
+                        this.sort_header[4] = '▲'
+                    }
                     break
                 case "DUOFPP":
-                    this.r_ratings.sort(function (a,b){
-                        return(a.DUOFPP > b.DUOFPP) ? -1 : (a.DUOFPP < b.DUOFPP) ? 1 : (a.DUOFPP == undefined) ? 1 : (b.DUOFPP == undefined) ? -1 : 0
-                    })
+                    if(this.sort_header[5] != '▼'){
+                        this.r_ratings.sort(function (a,b){
+                            return(a.DUOFPP > b.DUOFPP) ? -1 : (a.DUOFPP < b.DUOFPP) ? 1 : (a.DUOFPP == undefined) ? 1 : (b.DUOFPP == undefined) ? -1 : 0
+                        })
+                        this.sort_header = ['', '', '', '', '', '', '']
+                        this.sort_header[5] = '▼'
+                    } else {
+                        this.r_ratings.sort(function (a,b){
+                            return(a.DUOFPP < b.DUOFPP) ? -1 : (a.DUOFPP > b.DUOFPP) ? 1 : (a.DUOFPP == undefined) ? 1 : (b.DUOFPP == undefined) ? -1 : 0
+                        })
+                        this.sort_header = ['', '', '', '', '', '', '']
+                        this.sort_header[5] = '▲'
+                    }
                     break
                 case "SQUADFPP":
-                    this.r_ratings.sort(function (a,b){
-                        return(a.SQUADFPP > b.SQUADFPP) ? -1 : (a.SQUADFPP < b.SQUADFPP) ? 1 : (a.SQUADFPP == undefined) ? 1 : (b.SQUADFPP == undefined) ? -1 : 0
-                    })
+                    if(this.sort_header[6] != '▼'){
+                        this.r_ratings.sort(function (a,b){
+                            return(a.SQUADFPP > b.SQUADFPP) ? -1 : (a.SQUADFPP < b.SQUADFPP) ? 1 : (a.SQUADFPP == undefined) ? 1 : (b.SQUADFPP == undefined) ? -1 : 0
+                        })
+                        this.sort_header = ['', '', '', '', '', '', '']
+                        this.sort_header[6] = '▼'
+                    } else {
+                        this.r_ratings.sort(function (a,b){
+                            return(a.SQUADFPP < b.SQUADFPP) ? -1 : (a.SQUADFPP > b.SQUADFPP) ? 1 : (a.SQUADFPP == undefined) ? 1 : (b.SQUADFPP == undefined) ? -1 : 0
+                        })
+                        this.sort_header = ['', '', '', '', '', '', '']
+                        this.sort_header[6] = '▲'
+                    }
                     break
                 default:
                     console.log('sort error')
