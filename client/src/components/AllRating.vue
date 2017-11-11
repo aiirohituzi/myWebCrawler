@@ -2,6 +2,19 @@
 <div id="AllRating">
     <div class="container table-responsive">
         <h1>전체 레이팅 기록</h1>
+        <div class="pull-left">
+            <button v-if="this.season != undefined" class="btn btn-default" @click="seasonChange(undefined)">전체 보기</button>
+            <button v-else class="btn btn-primary" @click="seasonChange(undefined)">전체 보기</button>
+
+            <button v-if="this.season != '시즌 3'" class="btn btn-default" @click="seasonChange('시즌 3')">시즌 3</button>
+            <button v-else class="btn btn-primary" @click="seasonChange('시즌 3')">시즌 3</button>
+
+            <button v-if="this.season != '시즌 4'" class="btn btn-default" @click="seasonChange('시즌 4')">시즌 4</button>
+            <button v-else class="btn btn-primary" @click="seasonChange('시즌 4')">시즌 4</button>
+
+            <button v-if="this.season != '시즌 5'" class="btn btn-default" @click="seasonChange('시즌 5')">시즌 5</button>
+            <button v-else class="btn btn-primary" @click="seasonChange('시즌 5')">시즌 5</button>
+        </div>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -59,6 +72,7 @@ export default {
     name: 'AllRating',
     data () {
         return {
+            season: undefined,
             ratings: [
                {
                    'USER': 'Unknown',
@@ -77,11 +91,15 @@ export default {
         }
     },
     methods: {
-        userRating (userName) {
+        userRating: function (userName) {
             this.$router.push({name:'UserRating', params:{userName:userName}})
         },
         fetchRatings: function () {
-            axios.get('http://localhost:8000/rating/').then((response) => {
+            var season = ''
+            if(this.season){
+                season = '?season=' + this.season
+            }
+            axios.get('http://localhost:8000/rating/'+season).then((response) => {
                 this.ratings = response.data
                 this.length = response.data.length
 
@@ -92,7 +110,7 @@ export default {
                 console.log(error)
             })
         },
-        moreData () {
+        moreData: function () {
             if(this.max+10 <= this.length) {
                 this.max+=10
             } else {
@@ -105,7 +123,14 @@ export default {
 
             // console.log(this.max)
             // console.log(this.more)
-        }
+        },
+        seasonChange: function(season) {
+            this.season = season
+            this.length = 1
+            this.max = 10
+            this.more = true
+            this.fetchRatings()
+        },
     },
     mounted: function () {
         this.fetchRatings()

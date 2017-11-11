@@ -9,19 +9,37 @@ import operator
 # Create your views here.
 def getRating(request):
     data = []
-    for r in RatingData.objects.all().order_by('-created_at'):
-        data.append({
-            'id': r.id,
-            'USER': r.userName,
-            'SOLO': r.solo,
-            'DUO': r.duo,
-            'SQUAD': r.squad,
-            'SOLOFPP': r.solofpp,
-            'DUOFPP': r.duofpp,
-            'SQUADFPP': r.squadfpp,
-            'Update_time': datetime.datetime.strftime(r.created_at, "%Y-%m-%d %H:%M:%S"),
-            'season': r.season,
-        })
+
+    season = request.GET.get('season', False)
+
+    if season:
+        for r in RatingData.objects.filter(season=season).order_by('-created_at'):
+            data.append({
+                'id': r.id,
+                'USER': r.userName,
+                'SOLO': r.solo,
+                'DUO': r.duo,
+                'SQUAD': r.squad,
+                'SOLOFPP': r.solofpp,
+                'DUOFPP': r.duofpp,
+                'SQUADFPP': r.squadfpp,
+                'Update_time': datetime.datetime.strftime(r.created_at, "%Y-%m-%d %H:%M:%S"),
+                'season': r.season,
+            })
+    else:
+        for r in RatingData.objects.all().order_by('-created_at'):
+            data.append({
+                'id': r.id,
+                'USER': r.userName,
+                'SOLO': r.solo,
+                'DUO': r.duo,
+                'SQUAD': r.squad,
+                'SOLOFPP': r.solofpp,
+                'DUOFPP': r.duofpp,
+                'SQUADFPP': r.squadfpp,
+                'Update_time': datetime.datetime.strftime(r.created_at, "%Y-%m-%d %H:%M:%S"),
+                'season': r.season,
+            })
     data = json.dumps(data, indent=4)
     print("Get - rating data")
     # print(data)
