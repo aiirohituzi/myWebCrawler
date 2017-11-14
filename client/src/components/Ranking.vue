@@ -12,6 +12,9 @@
     </div>
     <br>
     <h1>3인칭 랭킹</h1>
+    <div>
+        <span v-if="this.error" class="label label-danger">서버 연결 에러</span>
+    </div>
     <hr>
     <div class="row">
         <div class="col-md-6 table-responsive">
@@ -176,7 +179,8 @@ export default {
             FPP_ratings: [],
             sf_ratings: [],
             df_ratings: [],
-            qf_ratings: []
+            qf_ratings: [],
+            error: false
         }
     },
     methods: {
@@ -185,6 +189,7 @@ export default {
         },
         fetchRatings: function () {
             axios.get('http://localhost:8000/TPPRanking/?season=' + this.season).then((response) => {
+                this.error = false
                 this.TPP_ratings = response.data
                 // console.log(response)
                 this.s_ratings = []
@@ -206,6 +211,7 @@ export default {
                 })
             }, (error) => {
                 console.log(error)
+                this.error = true
             })
 
             // axios.get('http://localhost:8000/soloRanking/?season=' + this.season).then((response) => {

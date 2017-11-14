@@ -2,6 +2,9 @@
 <div id="RecentRating">
     <div class="container table-responsive">
         <h1>최근 레이팅</h1>
+        <div>
+            <span v-if="this.error" class="label label-danger">서버 연결 에러</span>
+        </div>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -37,10 +40,21 @@ export default {
     name: 'RecentRating',
     data () {
         return {
-            r_ratings: [],
+            r_ratings: [
+               {
+                   'USER': 'Unknown',
+                   'SOLO': '0',
+                   'DUO': '0',
+                   'SQUAD': '0',
+                   'SOLOFPP': '0',
+                   'DUOFPP': '0',
+                   'SQUADFPP': '0',
+               }
+            ],
             sort_header: [
                 '', '', '', '', '', '', ''
-            ]
+            ],
+            error: false
         }
     },
     methods: {
@@ -49,9 +63,11 @@ export default {
         },
         fetchRatings: function () {
             axios.get('http://localhost:8000/recentRating/').then((response) => {
+                this.error = false
                 this.r_ratings = response.data
             }, (error) => {
                 console.log(error)
+                this.error = true
             })
         },
         sorting: function (Sortby) {

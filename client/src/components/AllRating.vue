@@ -2,6 +2,9 @@
 <div id="AllRating">
     <div class="container table-responsive">
         <h1>전체 레이팅 기록</h1>
+        <div>
+            <span v-if="this.error" class="label label-danger">서버 연결 에러</span>
+        </div>
         <div class="pull-left">
             <button v-if="this.season != undefined" class="btn btn-default" @click="seasonChange(undefined)">전체 보기</button>
             <button v-else class="btn btn-primary" @click="seasonChange(undefined)">전체 보기</button>
@@ -88,6 +91,7 @@ export default {
             length: 1,
             max: 10,
             more: true,
+            error: false
         }
     },
     methods: {
@@ -100,6 +104,7 @@ export default {
                 season = '?season=' + this.season
             }
             axios.get('http://localhost:8000/rating/'+season).then((response) => {
+                this.error = false
                 this.ratings = response.data
                 this.length = response.data.length
 
@@ -108,6 +113,7 @@ export default {
                 }
             }, (error) => {
                 console.log(error)
+                this.error = true
             })
         },
         moreData: function () {
