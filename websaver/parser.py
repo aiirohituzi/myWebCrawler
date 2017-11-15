@@ -103,6 +103,34 @@ class Paser:
                 '#profile > div.profileContent > div.modeSummary > section.squad.modeItem > div.mode-section.fpp > div.stats > div.kd.stats-item.stats-top-graph > p'
             )
 
+
+            soloRanking = soup.select(
+                '#profile > div.profileContent > div.modeSummary > section.solo.modeItem > div.mode-section.tpp > div.overview > div.rating > p > span.rank'
+            )
+
+            duoRanking = soup.select(
+                '#profile > div.profileContent > div.modeSummary > section.duo.modeItem > div.mode-section.tpp > div.overview > div.rating > p > span.rank'
+            )
+
+            squadRanking = soup.select(
+                '#profile > div.profileContent > div.modeSummary > section.squad.modeItem > div.mode-section.tpp > div.overview > div.rating > p > span.rank'
+            )
+
+            solofppRanking = soup.select(
+                '#profile > div.profileContent > div.modeSummary > section.solo.modeItem > div.mode-section.fpp > div.overview > div.rating > p > span.rank'
+            )
+
+            duofppRanking = soup.select(
+                '#profile > div.profileContent > div.modeSummary > section.duo.modeItem > div.mode-section.fpp > div.overview > div.rating > p > span.rank'
+            )
+
+            squadfppRanking = soup.select(
+                '#profile > div.profileContent > div.modeSummary > section.squad.modeItem > div.mode-section.fpp > div.overview > div.rating > p > span.rank'
+            )
+
+                
+
+
             if solo != []:
                 ratings.update({'solo': solo[0].text})
             if duo != []:
@@ -117,6 +145,7 @@ class Paser:
             if squadfpp != []:
                 ratings.update({'squadfpp': squadfpp[0].text})
 
+
             if solokd != []:
                 ratings.update({'solokd': solokd[0].text.replace(" ", "").rstrip().lstrip()})
             if duokd != []:
@@ -130,6 +159,22 @@ class Paser:
                 ratings.update({'duofppkd': duofppkd[0].text.replace(" ", "").rstrip().lstrip()})
             if squadfppkd != []:
                 ratings.update({'squadfppkd': squadfppkd[0].text.replace(" ", "").rstrip().lstrip()})
+
+            
+            if soloRanking != []:
+                ratings.update({'soloRanking': soloRanking[0].text.replace(" 위", "").replace("#", "")})
+            if duoRanking != []:
+                ratings.update({'duoRanking': duoRanking[0].text.replace(" 위", "").replace("#", "")})
+            if squadRanking != []:
+                ratings.update({'squadRanking': squadRanking[0].text.replace(" 위", "").replace("#", "")})
+
+            if solofppRanking != []:
+                ratings.update({'solofppRanking': solofppRanking[0].text.replace(" 위", "").replace("#", "")})
+            if duofppRanking != []:
+                ratings.update({'duofppRanking': duofppRanking[0].text.replace(" 위", "").replace("#", "")})
+            if squadfppRanking != []:
+                ratings.update({'squadfppRanking': squadfppRanking[0].text.replace(" 위", "").replace("#", "")})
+    
             
             data.append({
                 user: ratings
@@ -145,10 +190,12 @@ class Paser:
         for arr in rating_data:
             for user, rating in arr.items():
                 print(user)
-                print(str(rating.get('solo')) + '/' + str(rating.get('duo')) + '/' + str(rating.get('squad')))
-                print(str(rating.get('solofpp')) + '/' + str(rating.get('duofpp')) + '/' + str(rating.get('squadfpp')))
-                print(str(rating.get('solokd')) + '/' + str(rating.get('duokd')) + '/' + str(rating.get('squadkd')))
-                print(str(rating.get('solofppkd')) + '/' + str(rating.get('duofppkd')) + '/' + str(rating.get('squadfppkd')))
+                print('TPP : ' + str(rating.get('solo')) + '/' + str(rating.get('duo')) + '/' + str(rating.get('squad')))
+                print('FPP : ' + str(rating.get('solofpp')) + '/' + str(rating.get('duofpp')) + '/' + str(rating.get('squadfpp')))
+                print('TPP_KD : ' + str(rating.get('solokd')) + '/' + str(rating.get('duokd')) + '/' + str(rating.get('squadkd')))
+                print('FPP_KD : ' + str(rating.get('solofppkd')) + '/' + str(rating.get('duofppkd')) + '/' + str(rating.get('squadfppkd')))
+                print('TPP_R : ' + str(rating.get('soloRanking')) + '/' + str(rating.get('duoRanking')) + '/' + str(rating.get('squadRanking')))
+                print('FPP_R : ' + str(rating.get('solofppRanking')) + '/' + str(rating.get('duofppRanking')) + '/' + str(rating.get('squadfppRanking')))
                 RatingData(
                     userName=user,
                     solo=rating.get('solo'),
@@ -157,15 +204,24 @@ class Paser:
                     solofpp=rating.get('solofpp'),
                     duofpp=rating.get('duofpp'),
                     squadfpp=rating.get('squadfpp'),
+
                     solokd=rating.get('solokd'),
                     duokd=rating.get('duokd'),
                     squadkd=rating.get('squadkd'),
                     solofppkd=rating.get('solofppkd'),
                     duofppkd=rating.get('duofppkd'),
                     squadfppkd=rating.get('squadfppkd'),
+                    
+                    soloRanking=rating.get('soloRanking'),
+                    duoRanking=rating.get('duoRanking'),
+                    squadRanking=rating.get('squadRanking'),
+                    solofppRanking=rating.get('solofppRanking'),
+                    duofppRanking=rating.get('duofppRanking'),
+                    squadfppRanking=rating.get('squadfppRanking'),
+
                     season=SEASON
                 ).save()
-        threading.Timer(CRAWLER_TIME + random.randrange(1,5), self.dbSave).start()
+        # threading.Timer(CRAWLER_TIME + random.randrange(1,5), self.dbSave).start()
 
 if __name__=='__main__':
     p = Paser(0)
