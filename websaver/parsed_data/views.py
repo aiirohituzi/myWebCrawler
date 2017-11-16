@@ -80,18 +80,28 @@ def getUserRating(request):
             data.append({
                 'id': r.id,
                 'USER': r.userName,
+
                 'SOLO': r.solo,
                 'DUO': r.duo,
                 'SQUAD': r.squad,
                 'SOLOFPP': r.solofpp,
                 'DUOFPP': r.duofpp,
                 'SQUADFPP': r.squadfpp,
+
                 'SOLOKD': r.solokd,
                 'DUOKD': r.duokd,
                 'SQUADKD': r.squadkd,
                 'SOLOFPPKD': r.solofppkd,
                 'DUOFPPKD': r.duofppkd,
                 'SQUADFPPKD': r.squadfppkd,
+
+                'SOLORANKING': r.soloRanking,
+                'DUORANKING': r.duoRanking,
+                'SQUADRANKING': r.squadRanking,
+                'SOLOFPPRANKING': r.solofppRanking,
+                'DUOFPPRANKING': r.duofppRanking,
+                'SQUADFPPRANKING': r.squadfppRanking,
+
                 'Update_time': datetime.datetime.strftime(r.created_at, "%Y-%m-%d %H:%M:%S"),
             })
         data = json.dumps(data, indent=4)
