@@ -6,88 +6,88 @@
         <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">최근 전체 랭킹</div>
-                    <table class="table table-condensed">
-                        <thead>
-                            <tr>
-                                <th>SOLO</th>
-                                <th>DUO</th>
-                                <th>SQUAD</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td v-if="u_ratings[0].SOLORANKING != null">{{u_ratings[0].SOLORANKING}} 위</td>
-                                <td v-else>-</td>
-                                <td v-if="u_ratings[0].DUORANKING != null">{{u_ratings[0].DUORANKING}} 위</td>
-                                <td v-else>-</td>
-                                <td v-if="u_ratings[0].SQUADRANKING != null">{{u_ratings[0].SQUADRANKING}} 위</td>
-                                <td v-else>-</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-condensed">
-                        <thead>
-                            <tr>
-                                <th>SOLO-FPP</th>
-                                <th>DUO-FPP</th>
-                                <th>SQUAD-FPP</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td v-if="u_ratings[0].SOLOFPPRANKING != null">{{u_ratings[0].SOLOFPPRANKING}} 위</td>
-                                <td v-else>-</td>
-                                <td v-if="u_ratings[0].DUOFPPRANKING != null">{{u_ratings[0].DUOFPPRANKING}} 위</td>
-                                <td v-else>-</td>
-                                <td v-if="u_ratings[0].SQUADFPPRANKING != null">{{u_ratings[0].SQUADFPPRANKING}} 위</td>
-                                <td v-else>-</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>SOLO</th>
+                            <th>DUO</th>
+                            <th>SQUAD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td v-if="u_ratings[0].SOLORANKING != null">{{u_ratings[0].SOLORANKING}} 위</td>
+                            <td v-else>-</td>
+                            <td v-if="u_ratings[0].DUORANKING != null">{{u_ratings[0].DUORANKING}} 위</td>
+                            <td v-else>-</td>
+                            <td v-if="u_ratings[0].SQUADRANKING != null">{{u_ratings[0].SQUADRANKING}} 위</td>
+                            <td v-else>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>SOLO-FPP</th>
+                            <th>DUO-FPP</th>
+                            <th>SQUAD-FPP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td v-if="u_ratings[0].SOLOFPPRANKING != null">{{u_ratings[0].SOLOFPPRANKING}} 위</td>
+                            <td v-else>-</td>
+                            <td v-if="u_ratings[0].DUOFPPRANKING != null">{{u_ratings[0].DUOFPPRANKING}} 위</td>
+                            <td v-else>-</td>
+                            <td v-if="u_ratings[0].SQUADFPPRANKING != null">{{u_ratings[0].SQUADFPPRANKING}} 위</td>
+                            <td v-else>-</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
         <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading">최근 K / D 수치</div>
-                    <table class="table table-condensed">
-                        <thead>
-                            <tr>
-                                <th>SOLO</th>
-                                <th>DUO</th>
-                                <th>SQUAD</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td v-if="u_ratings[0].SOLOKD != null">{{u_ratings[0].SOLOKD}}</td>
-                                <td v-else>-</td>
-                                <td v-if="u_ratings[0].DUOKD != null">{{u_ratings[0].DUOKD}}</td>
-                                <td v-else>-</td>
-                                <td v-if="u_ratings[0].SQUADKD != null">{{u_ratings[0].SQUADKD}}</td>
-                                <td v-else>-</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-condensed">
-                        <thead>
-                            <tr>
-                                <th>SOLO-FPP</th>
-                                <th>DUO-FPP</th>
-                                <th>SQUAD-FPP</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td v-if="u_ratings[0].SOLOFPPKD != null">{{u_ratings[0].SOLOFPPKD}}</td>
-                                <td v-else>-</td>
-                                <td v-if="u_ratings[0].DUOFPPKD != null">{{u_ratings[0].DUOFPPKD}}</td>
-                                <td v-else>-</td>
-                                <td v-if="u_ratings[0].SQUADFPPKD != null">{{u_ratings[0].SQUADFPPKD}}</td>
-                                <td v-else>-</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>SOLO</th>
+                            <th>DUO</th>
+                            <th>SQUAD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td v-if="u_ratings[0].SOLOKD != null">{{u_ratings[0].SOLOKD}}</td>
+                            <td v-else>-</td>
+                            <td v-if="u_ratings[0].DUOKD != null">{{u_ratings[0].DUOKD}}</td>
+                            <td v-else>-</td>
+                            <td v-if="u_ratings[0].SQUADKD != null">{{u_ratings[0].SQUADKD}}</td>
+                            <td v-else>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>SOLO-FPP</th>
+                            <th>DUO-FPP</th>
+                            <th>SQUAD-FPP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td v-if="u_ratings[0].SOLOFPPKD != null">{{u_ratings[0].SOLOFPPKD}}</td>
+                            <td v-else>-</td>
+                            <td v-if="u_ratings[0].DUOFPPKD != null">{{u_ratings[0].DUOFPPKD}}</td>
+                            <td v-else>-</td>
+                            <td v-if="u_ratings[0].SQUADFPPKD != null">{{u_ratings[0].SQUADFPPKD}}</td>
+                            <td v-else>-</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="pull-left">            
